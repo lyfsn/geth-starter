@@ -1,0 +1,3238 @@
+<!DOCTYPE html>
+<!-- saved from url=(0043)http://localhost:8081/ui/?si=inuse_space&p= -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <title>unknown inuse_space</title>
+  <style type="text/css">
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html, body {
+  height: 100%;
+}
+body {
+  font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+  font-size: 13px;
+  line-height: 1.4;
+  display: flex;
+  flex-direction: column;
+}
+a {
+  color: #2a66d9;
+}
+.header {
+  display: flex;
+  align-items: center;
+  height: 44px;
+  min-height: 44px;
+  background-color: #eee;
+  color: #212121;
+  padding: 0 1rem;
+}
+.header > div {
+  margin: 0 0.125em;
+}
+.header .title h1 {
+  font-size: 1.75em;
+  margin-right: 1rem;
+  margin-bottom: 4px;
+}
+.header .title a {
+  color: #212121;
+  text-decoration: none;
+}
+.header .title a:hover {
+  text-decoration: underline;
+}
+.header .description {
+  width: 100%;
+  text-align: right;
+  white-space: nowrap;
+}
+@media screen and (max-width: 799px) {
+  .header input {
+    display: none;
+  }
+}
+#detailsbox {
+  display: none;
+  z-index: 1;
+  position: fixed;
+  top: 40px;
+  right: 20px;
+  background-color: #ffffff;
+  box-shadow: 0 1px 5px rgba(0,0,0,.3);
+  line-height: 24px;
+  padding: 1em;
+  text-align: left;
+}
+.header input {
+  background: white url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' style='pointer-events:none;display:block;width:100%25;height:100%25;fill:%23757575'%3E%3Cpath d='M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61.0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z'/%3E%3C/svg%3E") no-repeat 4px center/20px 20px;
+  border: 1px solid #d1d2d3;
+  border-radius: 2px 0 0 2px;
+  padding: 0.25em;
+  padding-left: 28px;
+  margin-left: 1em;
+  font-family: 'Roboto', 'Noto', sans-serif;
+  font-size: 1em;
+  line-height: 24px;
+  color: #212121;
+}
+.downArrow {
+  border-top: .36em solid #ccc;
+  border-left: .36em solid transparent;
+  border-right: .36em solid transparent;
+  margin-bottom: .05em;
+  margin-left: .5em;
+  transition: border-top-color 200ms;
+}
+.menu-item {
+  height: 100%;
+  text-transform: uppercase;
+  font-family: 'Roboto Medium', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+  position: relative;
+}
+.menu-item .menu-name:hover {
+  opacity: 0.75;
+}
+.menu-item .menu-name:hover .downArrow {
+  border-top-color: #666;
+}
+.menu-name {
+  height: 100%;
+  padding: 0 0.5em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.menu-name a {
+  text-decoration: none;
+  color: #212121;
+}
+.submenu {
+  display: none;
+  z-index: 1;
+  margin-top: -4px;
+  min-width: 10em;
+  position: absolute;
+  left: 0px;
+  background-color: white;
+  box-shadow: 0 1px 5px rgba(0,0,0,.3);
+  font-size: 100%;
+  text-transform: none;
+  white-space: nowrap;
+}
+.menu-item, .submenu {
+  user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+}
+.submenu hr {
+  border: 0;
+  border-top: 2px solid #eee;
+}
+.submenu a {
+  display: block;
+  padding: .5em 1em;
+  text-decoration: none;
+}
+.submenu a:hover, .submenu a.active {
+  color: white;
+  background-color: #6b82d6;
+}
+.submenu a.disabled {
+  color: gray;
+  pointer-events: none;
+}
+.menu-check-mark {
+  position: absolute;
+  left: 2px;
+}
+.menu-delete-btn {
+  position: absolute;
+  right: 2px;
+}
+
+
+#dialog-overlay {
+  display: none;
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(1,1,1,0.1);
+}
+
+.dialog {
+  
+  display: none;
+  position: fixed;
+  margin: 0px;
+  top: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  z-index: 3;
+  font-size: 125%;
+  background-color: #ffffff;
+  box-shadow: 0 1px 5px rgba(0,0,0,.3);
+}
+.dialog-header {
+  font-size: 120%;
+  border-bottom: 1px solid #CCCCCC;
+  width: 100%;
+  text-align: center;
+  background: #EEEEEE;
+  user-select: none;
+}
+.dialog-footer {
+  border-top: 1px solid #CCCCCC;
+  width: 100%;
+  text-align: right;
+  padding: 10px;
+}
+.dialog-error {
+  margin: 10px;
+  color: red;
+}
+.dialog input {
+  margin: 10px;
+  font-size: inherit;
+}
+.dialog button {
+  margin-left: 10px;
+  font-size: inherit;
+}
+#save-dialog, #delete-dialog {
+  width: 50%;
+  max-width: 20em;
+}
+#delete-prompt {
+  padding: 10px;
+}
+
+#content {
+  overflow-y: scroll;
+  padding: 1em;
+}
+#top {
+  overflow-y: scroll;
+}
+#graph {
+  overflow: hidden;
+}
+#graph svg {
+  width: 100%;
+  height: auto;
+  padding: 10px;
+}
+#content.source .filename {
+  margin-top: 0;
+  margin-bottom: 1em;
+  font-size: 120%;
+}
+#content.source pre {
+  margin-bottom: 3em;
+}
+table {
+  border-spacing: 0px;
+  width: 100%;
+  padding-bottom: 1em;
+  white-space: nowrap;
+}
+table thead {
+  font-family: 'Roboto Medium', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+}
+table tr th {
+  position: sticky;
+  top: 0;
+  background-color: #ddd;
+  text-align: right;
+  padding: .3em .5em;
+}
+table tr td {
+  padding: .3em .5em;
+  text-align: right;
+}
+#top table tr th:nth-child(6),
+#top table tr th:nth-child(7),
+#top table tr td:nth-child(6),
+#top table tr td:nth-child(7) {
+  text-align: left;
+}
+#top table tr td:nth-child(6) {
+  width: 100%;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+#flathdr1, #flathdr2, #cumhdr1, #cumhdr2, #namehdr {
+  cursor: ns-resize;
+}
+.hilite {
+  background-color: #ebf5fb;
+  font-weight: bold;
+}
+</style>
+
+</head>
+<body>
+  <div class="header">
+  <div class="title">
+    <h1><a href="http://localhost:8081/ui/">pprof</a></h1>
+  </div>
+
+  <div id="view" class="menu-item">
+    <div class="menu-name">
+      View
+      <i class="downArrow"></i>
+    </div>
+    <div class="submenu">
+      <a title="Outputs top entries in text form" href="http://localhost:8081/ui/top" id="topbtn">Top</a>
+      <a title="Display profile as a directed graph" href="http://localhost:8081/ui/" id="graphbtn">Graph</a>
+      <a title="Display profile as a flame graph" href="http://localhost:8081/ui/flamegraph" id="flamegraph">Flame Graph</a>
+      <a title="Display profile as a flame graph (experimental version that can display caller info on selection)" href="http://localhost:8081/ui/flamegraph2" id="flamegraph2">Flame Graph (new)</a>
+      <a title="Output callers/callees of functions matching regexp" href="http://localhost:8081/ui/peek" id="peek">Peek</a>
+      <a title="Output annotated source for functions matching regexp" href="http://localhost:8081/ui/source" id="list">Source</a>
+      <a title="Output assembly listings annotated with samples" href="http://localhost:8081/ui/disasm" id="disasm">Disassemble</a>
+    </div>
+  </div>
+
+  
+  
+  <div id="sample" class="menu-item">
+    <div class="menu-name">
+      Sample
+      <i class="downArrow"></i>
+    </div>
+    <div class="submenu" style="display: none;">
+      
+      <a href="http://localhost:8081/ui/?si=alloc_objects&amp;p=" id="alloc_objects">alloc_objects</a>
+      
+      <a href="http://localhost:8081/ui/?si=alloc_space&amp;p=" id="alloc_space">alloc_space</a>
+      
+      <a href="http://localhost:8081/ui/?si=inuse_objects&amp;p=" id="inuse_objects">inuse_objects</a>
+      
+      <a href="http://localhost:8081/ui/?si=inuse_space&amp;p=" id="inuse_space">inuse_space</a>
+      
+    </div>
+  </div>
+  
+
+  <div id="refine" class="menu-item">
+    <div class="menu-name">
+      Refine
+      <i class="downArrow"></i>
+    </div>
+    <div class="submenu">
+      <a title="Restricts to samples going through a node matching regexp
+Discard samples that do not include a node matching this regexp.
+Matching includes the function name, filename or object name.
+" href="http://localhost:8081/ui/?" id="focus" class="disabled">Focus</a>
+      <a title="Skips paths going through any nodes matching regexp
+If set, discard samples that include a node matching this regexp.
+Matching includes the function name, filename or object name.
+" href="http://localhost:8081/ui/?" id="ignore" class="disabled">Ignore</a>
+      <a title="Skips nodes matching regexp
+Discard nodes that match this location.
+Other nodes from samples that include this location will be shown.
+Matching includes the function name, filename or object name.
+" href="http://localhost:8081/ui/?" id="hide" class="disabled">Hide</a>
+      <a title="Only show nodes matching regexp
+If set, only show nodes that match this location.
+Matching includes the function name, filename or object name.
+" href="http://localhost:8081/ui/?" id="show" class="disabled">Show</a>
+      <a title="Drops functions above the highest matched frame.
+If set, all frames above the highest match are dropped from every sample.
+Matching includes the function name, filename or object name.
+" href="http://localhost:8081/ui/?" id="show-from" class="disabled">Show from</a>
+      <hr>
+      <a title="Show the entire profile" href="http://localhost:8081/ui/?">Reset</a>
+    </div>
+  </div>
+
+  <div id="config" class="menu-item">
+    <div class="menu-name">
+      Config
+      <i class="downArrow"></i>
+    </div>
+    <div class="submenu">
+      <a title="Save current settings" id="save-config">Save as ...</a>
+      <hr>
+      
+      <a href="http://localhost:8081/ui/?si=inuse_space&amp;p=">
+        <span class="menu-check-mark">✓</span>
+        Default
+        
+      </a>
+      
+    </div>
+  </div>
+
+  <div id="download" class="menu-item">
+    <div class="menu-name">
+      <a href="http://localhost:8081/ui/download">Download</a>
+    </div>
+  </div>
+
+  <div>
+    <input id="search" type="text" placeholder="Search regexp" autocomplete="off" autocapitalize="none" size="40">
+  </div>
+
+  <div class="description">
+    <a title="Show information about the profile and this view" href="http://localhost:8081/ui/?si=inuse_space&amp;p=#" id="details">unknown inuse_space</a>
+    <div id="detailsbox">
+      <div>Type: inuse_space</div><div>Time: Apr 1, 2024 at 11:21am (CST)</div><div>Showing nodes accounting for 11.23GB, 98.88% of 11.36GB total</div><div>Dropped 83 nodes (cum &lt;= 0.06GB)</div><div>Dropped 1 edge (freq &lt;= 0.01GB)</div><div>Showing top 43 nodes out of 79</div><div>
+See https://git.io/JfYMW for how to read the graph</div>
+    </div>
+  </div>
+</div>
+
+<div id="dialog-overlay"></div>
+
+<div class="dialog" id="save-dialog">
+  <div class="dialog-header">Save options as</div>
+  <datalist id="config-list">
+    
+  </datalist>
+  <input id="save-name" type="text" list="config-list" placeholder="New config">
+  <div class="dialog-footer">
+    <span class="dialog-error" id="save-error"></span>
+    <button id="save-cancel">Cancel</button>
+    <button id="save-confirm">Save</button>
+  </div>
+</div>
+
+<div class="dialog" id="delete-dialog">
+  <div class="dialog-header" id="delete-dialog-title">Delete config</div>
+  <div id="delete-prompt"></div>
+  <div class="dialog-footer">
+    <span class="dialog-error" id="delete-error"></span>
+    <button id="delete-cancel">Cancel</button>
+    <button id="delete-confirm">Delete</button>
+  </div>
+</div>
+
+<div id="errors"></div>
+
+  <div id="graph">
+    <svg width="1919pt" height="2268pt" viewBox="482.614 2.2003 1744.65 2061.59" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 2263.75)">
+<title>unnamed</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-2263.75 1915.12,-2263.75 1915.12,4 -4,4"></polygon>
+<!-- N1 -->
+<g id="node1" class="node">
+<title>N1</title>
+<g id="a_node1"><a xlink:title="runtime.main (10.06GB)">
+<polygon fill="#edd6d5" stroke="#b20600" points="1281.5,-2259.75 1189.75,-2259.75 1189.75,-2222.5 1281.5,-2222.5 1281.5,-2259.75"></polygon>
+<text text-anchor="middle" x="1235.62" y="-2248.15" font-family="Times,serif" font-size="8.00">runtime</text>
+<text text-anchor="middle" x="1235.62" y="-2238.4" font-family="Times,serif" font-size="8.00">main</text>
+<text text-anchor="middle" x="1235.62" y="-2228.65" font-family="Times,serif" font-size="8.00">0 of 10.06GB (88.57%)</text>
+</a>
+</g>
+</g>
+<!-- N5 -->
+<g id="node5" class="node">
+<title>N5</title>
+<g id="a_node5"><a xlink:title="main.initGenesis (10.07GB)">
+<polygon fill="#edd6d5" stroke="#b20600" points="1281.5,-2170 1189.75,-2170 1189.75,-2132.75 1281.5,-2132.75 1281.5,-2170"></polygon>
+<text text-anchor="middle" x="1235.62" y="-2158.4" font-family="Times,serif" font-size="8.00">main</text>
+<text text-anchor="middle" x="1235.62" y="-2148.65" font-family="Times,serif" font-size="8.00">initGenesis</text>
+<text text-anchor="middle" x="1235.62" y="-2138.9" font-family="Times,serif" font-size="8.00">0 of 10.07GB (88.61%)</text>
+</a>
+</g>
+</g>
+<!-- N1&#45;&gt;N5 -->
+<g id="edge38" class="edge">
+<title>N1-&gt;N5</title>
+<g id="a_edge38"><a xlink:title="runtime.main ... main.initGenesis (10.06GB)">
+<path fill="none" stroke="#b20600" stroke-width="5" stroke-dasharray="1,5" d="M1235.62,-2222.37C1235.62,-2212.09 1235.62,-2198.8 1235.62,-2186.57"></path>
+<polygon fill="#b20600" stroke="#b20600" stroke-width="5" points="1240,-2186.64 1235.63,-2176.64 1231.25,-2186.64 1240,-2186.64"></polygon>
+</a>
+</g>
+<g id="a_edge38-label"><a xlink:title="runtime.main ... main.initGenesis (10.06GB)">
+<text text-anchor="middle" x="1262.25" y="-2191.2" font-family="Times,serif" font-size="14.00"> 10.06GB</text>
+</a>
+</g>
+</g>
+<!-- N2 -->
+<g id="node2" class="node">
+<title>N2</title>
+<g id="a_node2"><a xlink:title="github.com/ethereum/go-ethereum/core.hashAlloc (7.13GB)">
+<polygon fill="#edd8d5" stroke="#b21700" points="1279.62,-1975.88 1191.62,-1975.88 1191.62,-1938.62 1279.62,-1938.62 1279.62,-1975.88"></polygon>
+<text text-anchor="middle" x="1235.62" y="-1964.28" font-family="Times,serif" font-size="8.00">core</text>
+<text text-anchor="middle" x="1235.62" y="-1954.53" font-family="Times,serif" font-size="8.00">hashAlloc</text>
+<text text-anchor="middle" x="1235.62" y="-1944.78" font-family="Times,serif" font-size="8.00">0 of 7.13GB (62.72%)</text>
+</a>
+</g>
+</g>
+<!-- N6 -->
+<g id="node6" class="node">
+<title>N6</title>
+<g id="a_node6"><a xlink:title="github.com/ethereum/go-ethereum/core/state.(*StateDB).IntermediateRoot (5.31GB)">
+<polygon fill="#eddad5" stroke="#b22400" points="1292.75,-1871.88 1178.5,-1871.88 1178.5,-1792.62 1292.75,-1792.62 1292.75,-1871.88"></polygon>
+<text text-anchor="middle" x="1235.62" y="-1856.47" font-family="Times,serif" font-size="12.00">state</text>
+<text text-anchor="middle" x="1235.62" y="-1842.22" font-family="Times,serif" font-size="12.00">(*StateDB)</text>
+<text text-anchor="middle" x="1235.62" y="-1827.97" font-family="Times,serif" font-size="12.00">IntermediateRoot</text>
+<text text-anchor="middle" x="1235.62" y="-1813.72" font-family="Times,serif" font-size="12.00">0.07GB (0.65%)</text>
+<text text-anchor="middle" x="1235.62" y="-1799.47" font-family="Times,serif" font-size="12.00">of 5.31GB (46.73%)</text>
+</a>
+</g>
+</g>
+<!-- N2&#45;&gt;N6 -->
+<g id="edge41" class="edge">
+<title>N2-&gt;N6</title>
+<g id="a_edge41"><a xlink:title="github.com/ethereum/go-ethereum/core.hashAlloc ... github.com/ethereum/go-ethereum/core/state.(*StateDB).IntermediateRoot (5.31GB)">
+<path fill="none" stroke="#b22400" stroke-width="3" stroke-dasharray="1,5" d="M1235.62,-1938.36C1235.62,-1924.75 1235.62,-1905.25 1235.62,-1886.74"></path>
+<polygon fill="#b22400" stroke="#b22400" stroke-width="3" points="1239.13,-1886.78 1235.63,-1876.78 1232.13,-1886.78 1239.13,-1886.78"></polygon>
+</a>
+</g>
+<g id="a_edge41-label"><a xlink:title="github.com/ethereum/go-ethereum/core.hashAlloc ... github.com/ethereum/go-ethereum/core/state.(*StateDB).IntermediateRoot (5.31GB)">
+<text text-anchor="middle" x="1258.88" y="-1902.45" font-family="Times,serif" font-size="14.00"> 5.31GB</text>
+</a>
+</g>
+</g>
+<!-- N13 -->
+<g id="node13" class="node">
+<title>N13</title>
+<g id="a_node13"><a xlink:title="github.com/ethereum/go-ethereum/core/state.(*stateObject).GetCommittedState (0.91GB)">
+<polygon fill="#ede8e3" stroke="#b2916b" points="1484.38,-1881.25 1310.88,-1881.25 1310.88,-1783.25 1484.38,-1783.25 1484.38,-1881.25"></polygon>
+<text text-anchor="middle" x="1397.62" y="-1858.25" font-family="Times,serif" font-size="20.00">state</text>
+<text text-anchor="middle" x="1397.62" y="-1835.75" font-family="Times,serif" font-size="20.00">(*stateObject)</text>
+<text text-anchor="middle" x="1397.62" y="-1813.25" font-family="Times,serif" font-size="20.00">GetCommittedState</text>
+<text text-anchor="middle" x="1397.62" y="-1790.75" font-family="Times,serif" font-size="20.00">0.91GB (8.01%)</text>
+</a>
+</g>
+</g>
+<!-- N2&#45;&gt;N13 -->
+<g id="edge61" class="edge">
+<title>N2-&gt;N13</title>
+<g id="a_edge61"><a xlink:title="github.com/ethereum/go-ethereum/core.hashAlloc ... github.com/ethereum/go-ethereum/core/state.(*stateObject).GetCommittedState (0.91GB)">
+<path fill="none" stroke="#b2916b" stroke-dasharray="1,5" d="M1259.18,-1938.36C1276.53,-1925.19 1301.13,-1906.51 1324.79,-1888.55"></path>
+<polygon fill="#b2916b" stroke="#b2916b" points="1326.74,-1891.46 1332.59,-1882.63 1322.51,-1885.89 1326.74,-1891.46"></polygon>
+</a>
+</g>
+<g id="a_edge61-label"><a xlink:title="github.com/ethereum/go-ethereum/core.hashAlloc ... github.com/ethereum/go-ethereum/core/state.(*stateObject).GetCommittedState (0.91GB)">
+<text text-anchor="middle" x="1330.88" y="-1902.45" font-family="Times,serif" font-size="14.00"> 0.91GB</text>
+</a>
+</g>
+</g>
+<!-- N31 -->
+<g id="node31" class="node">
+<title>N31</title>
+<g id="a_node31"><a xlink:title="github.com/ethereum/go-ethereum/core/state.(*StateDB).createObject (0.82GB)">
+<polygon fill="#ede9e4" stroke="#b29572" points="631.75,-1855.75 547.5,-1855.75 547.5,-1808.75 631.75,-1808.75 631.75,-1855.75"></polygon>
+<text text-anchor="middle" x="589.62" y="-1844.15" font-family="Times,serif" font-size="8.00">state</text>
+<text text-anchor="middle" x="589.62" y="-1834.4" font-family="Times,serif" font-size="8.00">(*StateDB)</text>
+<text text-anchor="middle" x="589.62" y="-1824.65" font-family="Times,serif" font-size="8.00">createObject</text>
+<text text-anchor="middle" x="589.62" y="-1814.9" font-family="Times,serif" font-size="8.00">0 of 0.82GB (7.18%)</text>
+</a>
+</g>
+</g>
+<!-- N2&#45;&gt;N31 -->
+<g id="edge64" class="edge">
+<title>N2-&gt;N31</title>
+<g id="a_edge64"><a xlink:title="github.com/ethereum/go-ethereum/core.hashAlloc ... github.com/ethereum/go-ethereum/core/state.(*StateDB).createObject (0.82GB)">
+<path fill="none" stroke="#b29572" stroke-dasharray="1,5" d="M1191.23,-1946.46C1172.54,-1942.41 1150.55,-1937.74 1130.62,-1933.75 952.62,-1898.15 740.79,-1860.03 643.43,-1842.74"></path>
+<polygon fill="#b29572" stroke="#b29572" points="644.08,-1839.3 633.63,-1841 642.86,-1846.19 644.08,-1839.3"></polygon>
+</a>
+</g>
+<g id="a_edge64-label"><a xlink:title="github.com/ethereum/go-ethereum/core.hashAlloc ... github.com/ethereum/go-ethereum/core/state.(*StateDB).createObject (0.82GB)">
+<text text-anchor="middle" x="1050.88" y="-1902.45" font-family="Times,serif" font-size="14.00"> 0.82GB</text>
+</a>
+</g>
+</g>
+<!-- N40 -->
+<g id="node40" class="node">
+<title>N40</title>
+<g id="a_node40"><a xlink:title="github.com/ethereum/go-ethereum/core/state.(*stateObject).SetCode (0.06GB)">
+<polygon fill="#ededec" stroke="#b2b1ad" points="959,-1863.25 870.25,-1863.25 870.25,-1801.25 959,-1801.25 959,-1863.25"></polygon>
+<text text-anchor="middle" x="914.62" y="-1848.8" font-family="Times,serif" font-size="11.00">state</text>
+<text text-anchor="middle" x="914.62" y="-1835.3" font-family="Times,serif" font-size="11.00">(*stateObject)</text>
+<text text-anchor="middle" x="914.62" y="-1821.8" font-family="Times,serif" font-size="11.00">SetCode</text>
+<text text-anchor="middle" x="914.62" y="-1808.3" font-family="Times,serif" font-size="11.00">0.06GB (0.52%)</text>
+</a>
+</g>
+</g>
+<!-- N2&#45;&gt;N40 -->
+<g id="edge84" class="edge">
+<title>N2-&gt;N40</title>
+<g id="a_edge84"><a xlink:title="github.com/ethereum/go-ethereum/core.hashAlloc ... github.com/ethereum/go-ethereum/core/state.(*stateObject).SetCode (0.06GB)">
+<path fill="none" stroke="#b2b1ad" stroke-dasharray="1,5" d="M1191.33,-1939.28C1133.61,-1917.16 1032.68,-1878.49 969.98,-1854.46"></path>
+<polygon fill="#b2b1ad" stroke="#b2b1ad" points="971.5,-1851.3 960.91,-1850.99 969,-1857.83 971.5,-1851.3"></polygon>
+</a>
+</g>
+<g id="a_edge84-label"><a xlink:title="github.com/ethereum/go-ethereum/core.hashAlloc ... github.com/ethereum/go-ethereum/core/state.(*stateObject).SetCode (0.06GB)">
+<text text-anchor="middle" x="1146.88" y="-1902.45" font-family="Times,serif" font-size="14.00"> 0.06GB</text>
+</a>
+</g>
+</g>
+<!-- N3 -->
+<g id="node3" class="node">
+<title>N3</title>
+<g id="a_node3"><a xlink:title="github.com/ethereum/go-ethereum/core/state.(*stateObject).updateTrie (3.93GB)">
+<polygon fill="#eddbd5" stroke="#b23000" points="1250.62,-1569.75 1036.62,-1569.75 1036.62,-1426.75 1250.62,-1426.75 1250.62,-1569.75"></polygon>
+<text text-anchor="middle" x="1143.62" y="-1542.95" font-family="Times,serif" font-size="24.00">state</text>
+<text text-anchor="middle" x="1143.62" y="-1515.95" font-family="Times,serif" font-size="24.00">(*stateObject)</text>
+<text text-anchor="middle" x="1143.62" y="-1488.95" font-family="Times,serif" font-size="24.00">updateTrie</text>
+<text text-anchor="middle" x="1143.62" y="-1461.95" font-family="Times,serif" font-size="24.00">1.89GB (16.68%)</text>
+<text text-anchor="middle" x="1143.62" y="-1434.95" font-family="Times,serif" font-size="24.00">of 3.93GB (34.60%)</text>
+</a>
+</g>
+</g>
+<!-- NN3_0 -->
+<g id="NN3_0" class="node">
+<title>NN3_0</title>
+<g id="a_NN3_0"><a xlink:title="1.44GB">
+<polygon fill="#f8f8f8" stroke="black" points="1170.62,-1374.25 1120.62,-1374.25 1116.62,-1370.25 1116.62,-1338.25 1166.62,-1338.25 1170.62,-1342.25 1170.62,-1374.25"></polygon>
+<polyline fill="none" stroke="black" points="1166.62,-1370.25 1116.62,-1370.25"></polyline>
+<polyline fill="none" stroke="black" points="1166.62,-1370.25 1166.62,-1338.25"></polyline>
+<polyline fill="none" stroke="black" points="1166.62,-1370.25 1170.62,-1374.25"></polyline>
+<text text-anchor="middle" x="1143.62" y="-1353.53" font-family="Times,serif" font-size="8.00">246.50MB</text>
+</a>
+</g>
+</g>
+<!-- N3&#45;&gt;NN3_0 -->
+<g id="edge1" class="edge">
+<title>N3-&gt;NN3_0</title>
+<g id="a_edge1"><a xlink:title="1.44GB">
+<path fill="none" stroke="black" d="M1143.62,-1426.43C1143.62,-1412.13 1143.62,-1397.88 1143.62,-1386.07"></path>
+<polygon fill="black" stroke="black" points="1147.13,-1386.24 1143.63,-1376.24 1140.13,-1386.24 1147.13,-1386.24"></polygon>
+</a>
+</g>
+<g id="a_edge1-label"><a xlink:title="1.44GB">
+<text text-anchor="middle" x="1166.88" y="-1395.45" font-family="Times,serif" font-size="14.00"> 1.44GB</text>
+</a>
+</g>
+</g>
+<!-- NN3_1 -->
+<g id="NN3_1" class="node">
+<title>NN3_1</title>
+<g id="a_NN3_1"><a xlink:title="0.24GB">
+<polygon fill="#f8f8f8" stroke="black" points="1271,-1374.25 1192.25,-1374.25 1188.25,-1370.25 1188.25,-1338.25 1267,-1338.25 1271,-1342.25 1271,-1374.25"></polygon>
+<polyline fill="none" stroke="black" points="1267,-1370.25 1188.25,-1370.25"></polyline>
+<polyline fill="none" stroke="black" points="1267,-1370.25 1267,-1338.25"></polyline>
+<polyline fill="none" stroke="black" points="1267,-1370.25 1271,-1374.25"></polyline>
+<text text-anchor="middle" x="1229.62" y="-1353.53" font-family="Times,serif" font-size="8.00">89.25MB..178.50MB</text>
+</a>
+</g>
+</g>
+<!-- N3&#45;&gt;NN3_1 -->
+<g id="edge2" class="edge">
+<title>N3-&gt;NN3_1</title>
+<g id="a_edge2"><a xlink:title="0.24GB">
+<path fill="none" stroke="black" d="M1187.13,-1426.43C1196.37,-1411.38 1205.59,-1396.38 1213.06,-1384.22"></path>
+<polygon fill="black" stroke="black" points="1215.84,-1386.37 1218.1,-1376.02 1209.88,-1382.71 1215.84,-1386.37"></polygon>
+</a>
+</g>
+<g id="a_edge2-label"><a xlink:title="0.24GB">
+<text text-anchor="middle" x="1229.88" y="-1395.45" font-family="Times,serif" font-size="14.00"> 0.24GB</text>
+</a>
+</g>
+</g>
+<!-- NN3_2 -->
+<g id="NN3_2" class="node">
+<title>NN3_2</title>
+<g id="a_NN3_2"><a xlink:title="0.06GB">
+<polygon fill="#f8f8f8" stroke="black" points="1351.88,-1374.25 1293.38,-1374.25 1289.38,-1370.25 1289.38,-1338.25 1347.88,-1338.25 1351.88,-1342.25 1351.88,-1374.25"></polygon>
+<polyline fill="none" stroke="black" points="1347.88,-1370.25 1289.38,-1370.25"></polyline>
+<polyline fill="none" stroke="black" points="1347.88,-1370.25 1347.88,-1338.25"></polyline>
+<polyline fill="none" stroke="black" points="1347.88,-1370.25 1351.88,-1374.25"></polyline>
+<text text-anchor="middle" x="1320.62" y="-1353.53" font-family="Times,serif" font-size="8.00">16B..15.41MB</text>
+</a>
+</g>
+</g>
+<!-- N3&#45;&gt;NN3_2 -->
+<g id="edge3" class="edge">
+<title>N3-&gt;NN3_2</title>
+<g id="a_edge3"><a xlink:title="0.06GB">
+<path fill="none" stroke="black" d="M1234.37,-1426.35C1241.91,-1420.41 1249.4,-1414.48 1256.62,-1408.75 1267.6,-1400.04 1279.57,-1390.43 1290.16,-1381.9"></path>
+<polygon fill="black" stroke="black" points="1292.29,-1384.68 1297.88,-1375.67 1287.9,-1379.23 1292.29,-1384.68"></polygon>
+</a>
+</g>
+<g id="a_edge3-label"><a xlink:title="0.06GB">
+<text text-anchor="middle" x="1299.88" y="-1395.45" font-family="Times,serif" font-size="14.00"> 0.06GB</text>
+</a>
+</g>
+</g>
+<!-- NN3_3 -->
+<g id="NN3_3" class="node">
+<title>NN3_3</title>
+<g id="a_NN3_3"><a xlink:title="0.06GB">
+<polygon fill="#f8f8f8" stroke="black" points="977.12,-1374.25 902.12,-1374.25 898.12,-1370.25 898.12,-1338.25 973.12,-1338.25 977.12,-1342.25 977.12,-1374.25"></polygon>
+<polyline fill="none" stroke="black" points="973.12,-1370.25 898.12,-1370.25"></polyline>
+<polyline fill="none" stroke="black" points="973.12,-1370.25 973.12,-1338.25"></polyline>
+<polyline fill="none" stroke="black" points="973.12,-1370.25 977.12,-1374.25"></polyline>
+<text text-anchor="middle" x="937.62" y="-1353.53" font-family="Times,serif" font-size="8.00">30.81MB..76.50MB</text>
+</a>
+</g>
+</g>
+<!-- N3&#45;&gt;NN3_3 -->
+<g id="edge4" class="edge">
+<title>N3-&gt;NN3_3</title>
+<g id="a_edge4"><a xlink:title="0.06GB">
+<path fill="none" stroke="black" d="M1036.15,-1471.62C1002.12,-1458.31 967.56,-1438.38 945.12,-1408.75 940.21,-1402.26 937.83,-1393.97 936.8,-1385.94"></path>
+<polygon fill="black" stroke="black" points="940.31,-1385.9 936.22,-1376.12 933.32,-1386.31 940.31,-1385.9"></polygon>
+</a>
+</g>
+<g id="a_edge4-label"><a xlink:title="0.06GB">
+<text text-anchor="middle" x="968.88" y="-1395.45" font-family="Times,serif" font-size="14.00"> 0.06GB</text>
+</a>
+</g>
+</g>
+<!-- N7 -->
+<g id="node7" class="node">
+<title>N7</title>
+<g id="a_node7"><a xlink:title="github.com/ethereum/go-ethereum/trie.(*StateTrie).UpdateStorage (1.99GB)">
+<polygon fill="#ede0d8" stroke="#b25516" points="1141.38,-1301.25 961.88,-1301.25 961.88,-1180.75 1141.38,-1180.75 1141.38,-1301.25"></polygon>
+<text text-anchor="middle" x="1051.62" y="-1278.25" font-family="Times,serif" font-size="20.00">trie</text>
+<text text-anchor="middle" x="1051.62" y="-1255.75" font-family="Times,serif" font-size="20.00">(*StateTrie)</text>
+<text text-anchor="middle" x="1051.62" y="-1233.25" font-family="Times,serif" font-size="20.00">UpdateStorage</text>
+<text text-anchor="middle" x="1051.62" y="-1210.75" font-family="Times,serif" font-size="20.00">1.05GB (9.24%)</text>
+<text text-anchor="middle" x="1051.62" y="-1188.25" font-family="Times,serif" font-size="20.00">of 1.99GB (17.51%)</text>
+</a>
+</g>
+</g>
+<!-- N3&#45;&gt;N7 -->
+<g id="edge43" class="edge">
+<title>N3-&gt;N7</title>
+<g id="a_edge43"><a xlink:title="github.com/ethereum/go-ethereum/core/state.(*stateObject).updateTrie -&gt; github.com/ethereum/go-ethereum/trie.(*StateTrie).UpdateStorage (1.99GB)">
+<path fill="none" stroke="#b25516" d="M1087.2,-1426.42C1076.82,-1410.11 1067.31,-1392.24 1061.12,-1374.25 1054.49,-1354.96 1051.31,-1333.18 1049.99,-1312.95"></path>
+<polygon fill="#b25516" stroke="#b25516" points="1053.49,-1312.9 1049.5,-1303.08 1046.5,-1313.24 1053.49,-1312.9"></polygon>
+</a>
+</g>
+<g id="a_edge43-label"><a xlink:title="github.com/ethereum/go-ethereum/core/state.(*stateObject).updateTrie -&gt; github.com/ethereum/go-ethereum/trie.(*StateTrie).UpdateStorage (1.99GB)">
+<text text-anchor="middle" x="1084.88" y="-1351.2" font-family="Times,serif" font-size="14.00"> 1.99GB</text>
+</a>
+</g>
+</g>
+<!-- N37 -->
+<g id="node37" class="node">
+<title>N37</title>
+<g id="a_node37"><a xlink:title="github.com/ethereum/go-ethereum/rlp.EncodeToBytes (0.17GB)">
+<polygon fill="#edeceb" stroke="#b2aea5" points="704.75,-1050.38 620.5,-1050.38 620.5,-1013.12 704.75,-1013.12 704.75,-1050.38"></polygon>
+<text text-anchor="middle" x="662.62" y="-1038.78" font-family="Times,serif" font-size="8.00">rlp</text>
+<text text-anchor="middle" x="662.62" y="-1029.03" font-family="Times,serif" font-size="8.00">EncodeToBytes</text>
+<text text-anchor="middle" x="662.62" y="-1019.27" font-family="Times,serif" font-size="8.00">0 of 0.17GB (1.50%)</text>
+</a>
+</g>
+</g>
+<!-- N3&#45;&gt;N37 -->
+<g id="edge85" class="edge">
+<title>N3-&gt;N37</title>
+<g id="a_edge85"><a xlink:title="github.com/ethereum/go-ethereum/core/state.(*stateObject).updateTrie -&gt; github.com/ethereum/go-ethereum/rlp.EncodeToBytes (0.05GB)">
+<path fill="none" stroke="#b2b1ae" d="M1077.89,-1426.36C1043.97,-1390.77 1005.61,-1352.28 985.62,-1338.25 953.73,-1315.86 928.81,-1332.94 906.12,-1301.25 851.75,-1225.28 944.35,-1163.25 883.62,-1092.25 862.02,-1066.98 774.22,-1049.33 716.01,-1040.12"></path>
+<polygon fill="#b2b1ae" stroke="#b2b1ae" points="716.7,-1036.69 706.28,-1038.63 715.63,-1043.61 716.7,-1036.69"></polygon>
+</a>
+</g>
+<g id="a_edge85-label"><a xlink:title="github.com/ethereum/go-ethereum/core/state.(*stateObject).updateTrie -&gt; github.com/ethereum/go-ethereum/rlp.EncodeToBytes (0.05GB)">
+<text text-anchor="middle" x="929.88" y="-1235.95" font-family="Times,serif" font-size="14.00"> 0.05GB</text>
+</a>
+</g>
+</g>
+<!-- N4 -->
+<g id="node4" class="node">
+<title>N4</title>
+<g id="a_node4"><a xlink:title="github.com/ethereum/go-ethereum/core.(*Genesis).Commit (8.69GB)">
+<polygon fill="#edd7d5" stroke="#b20d00" points="1279.62,-2080.25 1191.62,-2080.25 1191.62,-2033.25 1279.62,-2033.25 1279.62,-2080.25"></polygon>
+<text text-anchor="middle" x="1235.62" y="-2068.65" font-family="Times,serif" font-size="8.00">core</text>
+<text text-anchor="middle" x="1235.62" y="-2058.9" font-family="Times,serif" font-size="8.00">(*Genesis)</text>
+<text text-anchor="middle" x="1235.62" y="-2049.15" font-family="Times,serif" font-size="8.00">Commit</text>
+<text text-anchor="middle" x="1235.62" y="-2039.4" font-family="Times,serif" font-size="8.00">0 of 8.69GB (76.47%)</text>
+</a>
+</g>
+</g>
+<!-- N4&#45;&gt;N2 -->
+<g id="edge40" class="edge">
+<title>N4-&gt;N2</title>
+<g id="a_edge40"><a xlink:title="github.com/ethereum/go-ethereum/core.(*Genesis).Commit ... github.com/ethereum/go-ethereum/core.hashAlloc (7.13GB)">
+<path fill="none" stroke="#b21700" stroke-width="4" stroke-dasharray="1,5" d="M1235.62,-2033.14C1235.62,-2020.95 1235.62,-2005.68 1235.62,-1992.11"></path>
+<polygon fill="#b21700" stroke="#b21700" stroke-width="4" points="1239.13,-1992.24 1235.63,-1982.24 1232.13,-1992.24 1239.13,-1992.24"></polygon>
+</a>
+</g>
+<g id="a_edge40-label"><a xlink:title="github.com/ethereum/go-ethereum/core.(*Genesis).Commit ... github.com/ethereum/go-ethereum/core.hashAlloc (7.13GB)">
+<text text-anchor="middle" x="1258.88" y="-2001.95" font-family="Times,serif" font-size="14.00"> 7.13GB</text>
+</a>
+</g>
+</g>
+<!-- N18 -->
+<g id="node18" class="node">
+<title>N18</title>
+<g id="a_node18"><a xlink:title="github.com/ethereum/go-ethereum/core.flushAlloc (1.56GB)">
+<polygon fill="#ede4dc" stroke="#b26e37" points="1121.62,-1975.88 1033.62,-1975.88 1033.62,-1938.62 1121.62,-1938.62 1121.62,-1975.88"></polygon>
+<text text-anchor="middle" x="1077.62" y="-1964.28" font-family="Times,serif" font-size="8.00">core</text>
+<text text-anchor="middle" x="1077.62" y="-1954.53" font-family="Times,serif" font-size="8.00">flushAlloc</text>
+<text text-anchor="middle" x="1077.62" y="-1944.78" font-family="Times,serif" font-size="8.00">0 of 1.56GB (13.75%)</text>
+</a>
+</g>
+</g>
+<!-- N4&#45;&gt;N18 -->
+<g id="edge44" class="edge">
+<title>N4-&gt;N18</title>
+<g id="a_edge44"><a xlink:title="github.com/ethereum/go-ethereum/core.(*Genesis).Commit -&gt; github.com/ethereum/go-ethereum/core.flushAlloc (1.56GB)">
+<path fill="none" stroke="#b26e37" d="M1198.58,-2032.89C1173.86,-2017.64 1141.42,-1997.62 1116.36,-1982.15"></path>
+<polygon fill="#b26e37" stroke="#b26e37" points="1118.44,-1979.32 1108.09,-1977.05 1114.76,-1985.28 1118.44,-1979.32"></polygon>
+</a>
+</g>
+<g id="a_edge44-label"><a xlink:title="github.com/ethereum/go-ethereum/core.(*Genesis).Commit -&gt; github.com/ethereum/go-ethereum/core.flushAlloc (1.56GB)">
+<text text-anchor="middle" x="1189.88" y="-2001.95" font-family="Times,serif" font-size="14.00"> 1.56GB</text>
+</a>
+</g>
+</g>
+<!-- N5&#45;&gt;N4 -->
+<g id="edge39" class="edge">
+<title>N5-&gt;N4</title>
+<g id="a_edge39"><a xlink:title="main.initGenesis ... github.com/ethereum/go-ethereum/core.(*Genesis).Commit (8.69GB)">
+<path fill="none" stroke="#b20d00" stroke-width="4" stroke-dasharray="1,5" d="M1235.62,-2132.52C1235.62,-2122.21 1235.62,-2108.83 1235.62,-2096.25"></path>
+<polygon fill="#b20d00" stroke="#b20d00" stroke-width="4" points="1239.13,-2096.54 1235.63,-2086.54 1232.13,-2096.54 1239.13,-2096.54"></polygon>
+</a>
+</g>
+<g id="a_edge39-label"><a xlink:title="main.initGenesis ... github.com/ethereum/go-ethereum/core.(*Genesis).Commit (8.69GB)">
+<text text-anchor="middle" x="1258.88" y="-2101.45" font-family="Times,serif" font-size="14.00"> 8.69GB</text>
+</a>
+</g>
+</g>
+<!-- N42 -->
+<g id="node42" class="node">
+<title>N42</title>
+<g id="a_node42"><a xlink:title="encoding/json.(*Decoder).Decode (1.38GB)">
+<polygon fill="#ede5de" stroke="#b27846" points="1540.62,-2080.25 1452.62,-2080.25 1452.62,-2033.25 1540.62,-2033.25 1540.62,-2080.25"></polygon>
+<text text-anchor="middle" x="1496.62" y="-2068.65" font-family="Times,serif" font-size="8.00">json</text>
+<text text-anchor="middle" x="1496.62" y="-2058.9" font-family="Times,serif" font-size="8.00">(*Decoder)</text>
+<text text-anchor="middle" x="1496.62" y="-2049.15" font-family="Times,serif" font-size="8.00">Decode</text>
+<text text-anchor="middle" x="1496.62" y="-2039.4" font-family="Times,serif" font-size="8.00">0 of 1.38GB (12.13%)</text>
+</a>
+</g>
+</g>
+<!-- N5&#45;&gt;N42 -->
+<g id="edge50" class="edge">
+<title>N5-&gt;N42</title>
+<g id="a_edge50"><a xlink:title="main.initGenesis -&gt; encoding/json.(*Decoder).Decode (1.38GB)">
+<path fill="none" stroke="#b27846" d="M1281.99,-2133.92C1326.7,-2118.05 1394.38,-2094.04 1441.76,-2077.22"></path>
+<polygon fill="#b27846" stroke="#b27846" points="1442.76,-2080.58 1451.01,-2073.94 1440.41,-2073.98 1442.76,-2080.58"></polygon>
+</a>
+</g>
+<g id="a_edge50-label"><a xlink:title="main.initGenesis -&gt; encoding/json.(*Decoder).Decode (1.38GB)">
+<text text-anchor="middle" x="1405.88" y="-2101.45" font-family="Times,serif" font-size="14.00"> 1.38GB</text>
+</a>
+</g>
+</g>
+<!-- N6&#45;&gt;N3 -->
+<g id="edge42" class="edge">
+<title>N6-&gt;N3</title>
+<g id="a_edge42"><a xlink:title="github.com/ethereum/go-ethereum/core/state.(*StateDB).IntermediateRoot ... github.com/ethereum/go-ethereum/core/state.(*stateObject).updateTrie (3.93GB)">
+<path fill="none" stroke="#b23000" stroke-width="2" stroke-dasharray="1,5" d="M1199.53,-1792.23C1182.12,-1770.86 1162.93,-1742.94 1153.12,-1714.25 1138.85,-1672.46 1135.73,-1623.42 1136.51,-1582.74"></path>
+<polygon fill="#b23000" stroke="#b23000" stroke-width="2" points="1140.01,-1582.97 1136.8,-1572.87 1133.01,-1582.76 1140.01,-1582.97"></polygon>
+</a>
+</g>
+<g id="a_edge42-label"><a xlink:title="github.com/ethereum/go-ethereum/core/state.(*StateDB).IntermediateRoot ... github.com/ethereum/go-ethereum/core/state.(*stateObject).updateTrie (3.93GB)">
+<text text-anchor="middle" x="1176.88" y="-1663.2" font-family="Times,serif" font-size="14.00"> 3.93GB</text>
+</a>
+</g>
+</g>
+<!-- NN6_0 -->
+<g id="NN6_0" class="node">
+<title>NN6_0</title>
+<g id="a_NN6_0"><a xlink:title="0.03GB">
+<polygon fill="#f8f8f8" stroke="black" points="1262.62,-1686.25 1212.62,-1686.25 1208.62,-1682.25 1208.62,-1650.25 1258.62,-1650.25 1262.62,-1654.25 1262.62,-1686.25"></polygon>
+<polyline fill="none" stroke="black" points="1258.62,-1682.25 1208.62,-1682.25"></polyline>
+<polyline fill="none" stroke="black" points="1258.62,-1682.25 1258.62,-1650.25"></polyline>
+<polyline fill="none" stroke="black" points="1258.62,-1682.25 1262.62,-1686.25"></polyline>
+<text text-anchor="middle" x="1235.62" y="-1665.53" font-family="Times,serif" font-size="8.00">24B..320B</text>
+</a>
+</g>
+</g>
+<!-- N6&#45;&gt;NN6_0 -->
+<g id="edge5" class="edge">
+<title>N6-&gt;NN6_0</title>
+<g id="a_edge5"><a xlink:title="0.03GB">
+<path fill="none" stroke="black" d="M1235.62,-1792.45C1235.62,-1763.36 1235.62,-1724.19 1235.62,-1697.9"></path>
+<polygon fill="black" stroke="black" points="1239.13,-1697.98 1235.63,-1687.98 1232.13,-1697.98 1239.13,-1697.98"></polygon>
+</a>
+</g>
+<g id="a_edge5-label"><a xlink:title="0.03GB">
+<text text-anchor="middle" x="1258.88" y="-1743.7" font-family="Times,serif" font-size="14.00"> 0.03GB</text>
+</a>
+</g>
+</g>
+<!-- N25 -->
+<g id="node25" class="node">
+<title>N25</title>
+<g id="a_node25"><a xlink:title="github.com/ethereum/go-ethereum/core/state.(*StateDB).updateStateObject (1.12GB)">
+<polygon fill="#ede7e1" stroke="#b2865a" points="756.88,-1543.5 634.38,-1543.5 634.38,-1453 756.88,-1453 756.88,-1543.5"></polygon>
+<text text-anchor="middle" x="695.62" y="-1526.2" font-family="Times,serif" font-size="14.00">state</text>
+<text text-anchor="middle" x="695.62" y="-1509.7" font-family="Times,serif" font-size="14.00">(*StateDB)</text>
+<text text-anchor="middle" x="695.62" y="-1493.2" font-family="Times,serif" font-size="14.00">updateStateObject</text>
+<text text-anchor="middle" x="695.62" y="-1476.7" font-family="Times,serif" font-size="14.00">0.22GB (1.93%)</text>
+<text text-anchor="middle" x="695.62" y="-1460.2" font-family="Times,serif" font-size="14.00">of 1.12GB (9.87%)</text>
+</a>
+</g>
+</g>
+<!-- N6&#45;&gt;N25 -->
+<g id="edge54" class="edge">
+<title>N6-&gt;N25</title>
+<g id="a_edge54"><a xlink:title="github.com/ethereum/go-ethereum/core/state.(*StateDB).IntermediateRoot -&gt; github.com/ethereum/go-ethereum/core/state.(*StateDB).updateStateObject (1.12GB)">
+<path fill="none" stroke="#b2865a" d="M1178.05,-1819.99C1119.26,-1805.52 1029.41,-1774.7 977.12,-1714.25 949.29,-1682.07 980.13,-1652.91 950.62,-1622.25 899.02,-1568.63 857.77,-1603.86 791.62,-1569.75 780.86,-1564.2 770,-1557.5 759.64,-1550.46"></path>
+<polygon fill="#b2865a" stroke="#b2865a" points="761.74,-1547.66 751.54,-1544.8 757.73,-1553.39 761.74,-1547.66"></polygon>
+</a>
+</g>
+<g id="a_edge54-label"><a xlink:title="github.com/ethereum/go-ethereum/core/state.(*StateDB).IntermediateRoot -&gt; github.com/ethereum/go-ethereum/core/state.(*StateDB).updateStateObject (1.12GB)">
+<text text-anchor="middle" x="1000.88" y="-1663.2" font-family="Times,serif" font-size="14.00"> 1.12GB</text>
+</a>
+</g>
+</g>
+<!-- N35 -->
+<g id="node35" class="node">
+<title>N35</title>
+<g id="a_node35"><a xlink:title="github.com/ethereum/go-ethereum/core/state.(*StateDB).Finalise (0.18GB)">
+<polygon fill="#edeceb" stroke="#b2aea4" points="904.5,-1532.25 800.75,-1532.25 800.75,-1464.25 904.5,-1464.25 904.5,-1532.25"></polygon>
+<text text-anchor="middle" x="852.62" y="-1515.9" font-family="Times,serif" font-size="13.00">state</text>
+<text text-anchor="middle" x="852.62" y="-1500.9" font-family="Times,serif" font-size="13.00">(*StateDB)</text>
+<text text-anchor="middle" x="852.62" y="-1485.9" font-family="Times,serif" font-size="13.00">Finalise</text>
+<text text-anchor="middle" x="852.62" y="-1470.9" font-family="Times,serif" font-size="13.00">0.18GB (1.61%)</text>
+</a>
+</g>
+</g>
+<!-- N6&#45;&gt;N35 -->
+<g id="edge76" class="edge">
+<title>N6-&gt;N35</title>
+<g id="a_edge76"><a xlink:title="github.com/ethereum/go-ethereum/core/state.(*StateDB).IntermediateRoot -&gt; github.com/ethereum/go-ethereum/core/state.(*StateDB).Finalise (0.18GB)">
+<path fill="none" stroke="#b2aea4" d="M1178.32,-1792.97C1149.08,-1771.81 1114.09,-1743.85 1087.12,-1714.25 1054.33,-1678.25 1058.64,-1659.79 1027.62,-1622.25 1013.51,-1605.16 1009.06,-1601.43 991.62,-1587.75 967.49,-1568.8 939.18,-1550.2 914.42,-1534.97"></path>
+<polygon fill="#b2aea4" stroke="#b2aea4" points="916.43,-1532.09 906.07,-1529.88 912.79,-1538.07 916.43,-1532.09"></polygon>
+</a>
+</g>
+<g id="a_edge76-label"><a xlink:title="github.com/ethereum/go-ethereum/core/state.(*StateDB).IntermediateRoot -&gt; github.com/ethereum/go-ethereum/core/state.(*StateDB).Finalise (0.18GB)">
+<text text-anchor="middle" x="1110.88" y="-1663.2" font-family="Times,serif" font-size="14.00"> 0.18GB</text>
+</a>
+</g>
+</g>
+<!-- NN7_0 -->
+<g id="NN7_0" class="node">
+<title>NN7_0</title>
+<g id="a_NN7_0"><a xlink:title="0.52GB">
+<polygon fill="#f8f8f8" stroke="black" points="1078.62,-1128.25 1028.62,-1128.25 1024.62,-1124.25 1024.62,-1092.25 1074.62,-1092.25 1078.62,-1096.25 1078.62,-1128.25"></polygon>
+<polyline fill="none" stroke="black" points="1074.62,-1124.25 1024.62,-1124.25"></polyline>
+<polyline fill="none" stroke="black" points="1074.62,-1124.25 1074.62,-1092.25"></polyline>
+<polyline fill="none" stroke="black" points="1074.62,-1124.25 1078.62,-1128.25"></polyline>
+<text text-anchor="middle" x="1051.62" y="-1107.53" font-family="Times,serif" font-size="8.00">178.50MB</text>
+</a>
+</g>
+</g>
+<!-- N7&#45;&gt;NN7_0 -->
+<g id="edge6" class="edge">
+<title>N7-&gt;NN7_0</title>
+<g id="a_edge6"><a xlink:title="0.52GB">
+<path fill="none" stroke="black" d="M1051.62,-1180.52C1051.62,-1166.29 1051.62,-1151.74 1051.62,-1139.67"></path>
+<polygon fill="black" stroke="black" points="1055.13,-1140.04 1051.63,-1130.04 1048.13,-1140.04 1055.13,-1140.04"></polygon>
+</a>
+</g>
+<g id="a_edge6-label"><a xlink:title="0.52GB">
+<text text-anchor="middle" x="1074.88" y="-1149.45" font-family="Times,serif" font-size="14.00"> 0.52GB</text>
+</a>
+</g>
+</g>
+<!-- NN7_1 -->
+<g id="NN7_1" class="node">
+<title>NN7_1</title>
+<g id="a_NN7_1"><a xlink:title="0.36GB">
+<polygon fill="#f8f8f8" stroke="black" points="1150.62,-1128.25 1100.62,-1128.25 1096.62,-1124.25 1096.62,-1092.25 1146.62,-1092.25 1150.62,-1096.25 1150.62,-1128.25"></polygon>
+<polyline fill="none" stroke="black" points="1146.62,-1124.25 1096.62,-1124.25"></polyline>
+<polyline fill="none" stroke="black" points="1146.62,-1124.25 1146.62,-1092.25"></polyline>
+<polyline fill="none" stroke="black" points="1146.62,-1124.25 1150.62,-1128.25"></polyline>
+<text text-anchor="middle" x="1123.62" y="-1107.53" font-family="Times,serif" font-size="8.00">24B..80B</text>
+</a>
+</g>
+</g>
+<!-- N7&#45;&gt;NN7_1 -->
+<g id="edge7" class="edge">
+<title>N7-&gt;NN7_1</title>
+<g id="a_edge7"><a xlink:title="0.36GB">
+<path fill="none" stroke="black" d="M1091.68,-1180.29C1095.17,-1174.44 1098.55,-1168.53 1101.62,-1162.75 1105.66,-1155.17 1109.53,-1146.68 1112.87,-1138.82"></path>
+<polygon fill="black" stroke="black" points="1116.06,-1140.27 1116.62,-1129.69 1109.59,-1137.61 1116.06,-1140.27"></polygon>
+</a>
+</g>
+<g id="a_edge7-label"><a xlink:title="0.36GB">
+<text text-anchor="middle" x="1132.88" y="-1149.45" font-family="Times,serif" font-size="14.00"> 0.36GB</text>
+</a>
+</g>
+</g>
+<!-- NN7_2 -->
+<g id="NN7_2" class="node">
+<title>NN7_2</title>
+<g id="a_NN7_2"><a xlink:title="0.09GB">
+<polygon fill="#f8f8f8" stroke="black" points="1006.12,-1128.25 931.12,-1128.25 927.12,-1124.25 927.12,-1092.25 1002.12,-1092.25 1006.12,-1096.25 1006.12,-1128.25"></polygon>
+<polyline fill="none" stroke="black" points="1002.12,-1124.25 927.12,-1124.25"></polyline>
+<polyline fill="none" stroke="black" points="1002.12,-1124.25 1002.12,-1092.25"></polyline>
+<polyline fill="none" stroke="black" points="1002.12,-1124.25 1006.12,-1128.25"></polyline>
+<text text-anchor="middle" x="966.62" y="-1107.53" font-family="Times,serif" font-size="8.00">76.50MB..89.25MB</text>
+</a>
+</g>
+</g>
+<!-- N7&#45;&gt;NN7_2 -->
+<g id="edge8" class="edge">
+<title>N7-&gt;NN7_2</title>
+<g id="a_edge8"><a xlink:title="0.09GB">
+<path fill="none" stroke="black" d="M1012.36,-1180.52C1002.47,-1165.55 992.35,-1150.22 984.16,-1137.8"></path>
+<polygon fill="black" stroke="black" points="987.3,-1136.21 978.87,-1129.79 981.46,-1140.07 987.3,-1136.21"></polygon>
+</a>
+</g>
+<g id="a_edge8-label"><a xlink:title="0.09GB">
+<text text-anchor="middle" x="1022.88" y="-1149.45" font-family="Times,serif" font-size="14.00"> 0.09GB</text>
+</a>
+</g>
+</g>
+<!-- N17 -->
+<g id="node17" class="node">
+<title>N17</title>
+<g id="a_node17"><a xlink:title="github.com/ethereum/go-ethereum/trie.(*Trie).Update (1.55GB)">
+<polygon fill="#ede4dc" stroke="#b26f38" points="1230.62,-1055.25 1142.62,-1055.25 1142.62,-1008.25 1230.62,-1008.25 1230.62,-1055.25"></polygon>
+<text text-anchor="middle" x="1186.62" y="-1043.65" font-family="Times,serif" font-size="8.00">trie</text>
+<text text-anchor="middle" x="1186.62" y="-1033.9" font-family="Times,serif" font-size="8.00">(*Trie)</text>
+<text text-anchor="middle" x="1186.62" y="-1024.15" font-family="Times,serif" font-size="8.00">Update</text>
+<text text-anchor="middle" x="1186.62" y="-1014.4" font-family="Times,serif" font-size="8.00">0 of 1.55GB (13.63%)</text>
+</a>
+</g>
+</g>
+<!-- N7&#45;&gt;N17 -->
+<g id="edge60" class="edge">
+<title>N7-&gt;N17</title>
+<g id="a_edge60"><a xlink:title="github.com/ethereum/go-ethereum/trie.(*StateTrie).UpdateStorage -&gt; github.com/ethereum/go-ethereum/trie.(*Trie).Update (0.93GB)">
+<path fill="none" stroke="#b29069" d="M1141.79,-1184.32C1148.5,-1177.67 1154.59,-1170.48 1159.62,-1162.75 1178.45,-1133.85 1184.49,-1094.32 1186.26,-1066.46"></path>
+<polygon fill="#b29069" stroke="#b29069" points="1189.74,-1066.97 1186.72,-1056.82 1182.75,-1066.64 1189.74,-1066.97"></polygon>
+</a>
+</g>
+<g id="a_edge60-label"><a xlink:title="github.com/ethereum/go-ethereum/trie.(*StateTrie).UpdateStorage -&gt; github.com/ethereum/go-ethereum/trie.(*Trie).Update (0.93GB)">
+<text text-anchor="middle" x="1206.88" y="-1113.45" font-family="Times,serif" font-size="14.00"> 0.93GB</text>
+<text text-anchor="middle" x="1206.88" y="-1096.95" font-family="Times,serif" font-size="14.00"> (inline)</text>
+</a>
+</g>
+</g>
+<!-- N8 -->
+<g id="node8" class="node">
+<title>N8</title>
+<g id="a_node8"><a xlink:title="github.com/ethereum/go-ethereum/trie.(*hasher).hash (1.29GB)">
+<polygon fill="#ede6df" stroke="#b27d4d" points="1762.62,-438 1674.62,-438 1674.62,-391 1762.62,-391 1762.62,-438"></polygon>
+<text text-anchor="middle" x="1718.62" y="-426.4" font-family="Times,serif" font-size="8.00">trie</text>
+<text text-anchor="middle" x="1718.62" y="-416.65" font-family="Times,serif" font-size="8.00">(*hasher)</text>
+<text text-anchor="middle" x="1718.62" y="-406.9" font-family="Times,serif" font-size="8.00">hash</text>
+<text text-anchor="middle" x="1718.62" y="-397.15" font-family="Times,serif" font-size="8.00">0 of 1.29GB (11.36%)</text>
+</a>
+</g>
+</g>
+<!-- N24 -->
+<g id="node24" class="node">
+<title>N24</title>
+<g id="a_node24"><a xlink:title="github.com/ethereum/go-ethereum/trie.(*hasher).hashFullNodeChildren (1.29GB)">
+<polygon fill="#ede6df" stroke="#b27d4d" points="1692.62,-582.88 1604.62,-582.88 1604.62,-535.88 1692.62,-535.88 1692.62,-582.88"></polygon>
+<text text-anchor="middle" x="1648.62" y="-571.27" font-family="Times,serif" font-size="8.00">trie</text>
+<text text-anchor="middle" x="1648.62" y="-561.52" font-family="Times,serif" font-size="8.00">(*hasher)</text>
+<text text-anchor="middle" x="1648.62" y="-551.77" font-family="Times,serif" font-size="8.00">hashFullNodeChildren</text>
+<text text-anchor="middle" x="1648.62" y="-542.02" font-family="Times,serif" font-size="8.00">0 of 1.29GB (11.36%)</text>
+</a>
+</g>
+</g>
+<!-- N8&#45;&gt;N24 -->
+<g id="edge51" class="edge">
+<title>N8-&gt;N24</title>
+<g id="a_edge51"><a xlink:title="github.com/ethereum/go-ethereum/trie.(*hasher).hash -&gt; github.com/ethereum/go-ethereum/trie.(*hasher).hashFullNodeChildren (1.29GB)">
+<path fill="none" stroke="#b27d4d" d="M1717.27,-438.14C1715.19,-458.82 1709.94,-489.63 1696.62,-513 1693.72,-518.1 1690.06,-522.98 1686.06,-527.51"></path>
+<polygon fill="#b27d4d" stroke="#b27d4d" points="1683.54,-525.08 1679.11,-534.7 1688.58,-529.94 1683.54,-525.08"></polygon>
+</a>
+</g>
+<g id="a_edge51-label"><a xlink:title="github.com/ethereum/go-ethereum/trie.(*hasher).hash -&gt; github.com/ethereum/go-ethereum/trie.(*hasher).hashFullNodeChildren (1.29GB)">
+<text text-anchor="middle" x="1733.88" y="-491.45" font-family="Times,serif" font-size="14.00"> 1.29GB</text>
+</a>
+</g>
+</g>
+<!-- N32 -->
+<g id="node32" class="node">
+<title>N32</title>
+<g id="a_node32"><a xlink:title="github.com/ethereum/go-ethereum/trie.(*hasher).hashData (0.24GB)">
+<polygon fill="#edecea" stroke="#b2ac9f" points="1731.38,-314.5 1623.88,-314.5 1623.88,-240.5 1731.38,-240.5 1731.38,-314.5"></polygon>
+<text text-anchor="middle" x="1677.62" y="-297.2" font-family="Times,serif" font-size="14.00">trie</text>
+<text text-anchor="middle" x="1677.62" y="-280.7" font-family="Times,serif" font-size="14.00">(*hasher)</text>
+<text text-anchor="middle" x="1677.62" y="-264.2" font-family="Times,serif" font-size="14.00">hashData</text>
+<text text-anchor="middle" x="1677.62" y="-247.7" font-family="Times,serif" font-size="14.00">0.24GB (2.11%)</text>
+</a>
+</g>
+</g>
+<!-- N8&#45;&gt;N32 -->
+<g id="edge74" class="edge">
+<title>N8-&gt;N32</title>
+<g id="a_edge74"><a xlink:title="github.com/ethereum/go-ethereum/trie.(*hasher).hash ... github.com/ethereum/go-ethereum/trie.(*hasher).hashData (0.24GB)">
+<path fill="none" stroke="#b2ac9f" stroke-dasharray="1,5" d="M1700.57,-390.74C1692.37,-378.99 1683.52,-363.99 1679.12,-349 1677.02,-341.82 1675.83,-334.06 1675.25,-326.39"></path>
+<polygon fill="#b2ac9f" stroke="#b2ac9f" points="1678.75,-326.28 1674.84,-316.44 1671.75,-326.57 1678.75,-326.28"></polygon>
+</a>
+</g>
+<g id="a_edge74-label"><a xlink:title="github.com/ethereum/go-ethereum/trie.(*hasher).hash ... github.com/ethereum/go-ethereum/trie.(*hasher).hashData (0.24GB)">
+<text text-anchor="middle" x="1702.88" y="-335.7" font-family="Times,serif" font-size="14.00"> 0.24GB</text>
+</a>
+</g>
+</g>
+<!-- N39 -->
+<g id="node39" class="node">
+<title>N39</title>
+<g id="a_node39"><a xlink:title="github.com/ethereum/go-ethereum/trie.(*hasher).hashShortNodeChildren (0.46GB)">
+<polygon fill="#edebe8" stroke="#b2a48e" points="1841.88,-301 1749.38,-301 1749.38,-254 1841.88,-254 1841.88,-301"></polygon>
+<text text-anchor="middle" x="1795.62" y="-289.4" font-family="Times,serif" font-size="8.00">trie</text>
+<text text-anchor="middle" x="1795.62" y="-279.65" font-family="Times,serif" font-size="8.00">(*hasher)</text>
+<text text-anchor="middle" x="1795.62" y="-269.9" font-family="Times,serif" font-size="8.00">hashShortNodeChildren</text>
+<text text-anchor="middle" x="1795.62" y="-260.15" font-family="Times,serif" font-size="8.00">0 of 0.46GB (4.04%)</text>
+</a>
+</g>
+</g>
+<!-- N8&#45;&gt;N39 -->
+<g id="edge70" class="edge">
+<title>N8-&gt;N39</title>
+<g id="a_edge70"><a xlink:title="github.com/ethereum/go-ethereum/trie.(*hasher).hash -&gt; github.com/ethereum/go-ethereum/trie.(*hasher).hashShortNodeChildren (0.46GB)">
+<path fill="none" stroke="#b2a48e" d="M1724.91,-390.53C1730.04,-373.77 1738.24,-350.85 1749.12,-332.5 1753.74,-324.72 1759.51,-316.98 1765.41,-309.89"></path>
+<polygon fill="#b2a48e" stroke="#b2a48e" points="1767.96,-312.29 1771.86,-302.44 1762.67,-307.7 1767.96,-312.29"></polygon>
+</a>
+</g>
+<g id="a_edge70-label"><a xlink:title="github.com/ethereum/go-ethereum/trie.(*hasher).hash -&gt; github.com/ethereum/go-ethereum/trie.(*hasher).hashShortNodeChildren (0.46GB)">
+<text text-anchor="middle" x="1772.88" y="-335.7" font-family="Times,serif" font-size="14.00"> 0.46GB</text>
+</a>
+</g>
+</g>
+<!-- N9 -->
+<g id="node9" class="node">
+<title>N9</title>
+<g id="a_node9"><a xlink:title="github.com/ethereum/go-ethereum/trie.(*Trie).update (1.55GB)">
+<polygon fill="#ede4dc" stroke="#b26f38" points="1249,-939.25 1124.25,-939.25 1124.25,-856.25 1249,-856.25 1249,-939.25"></polygon>
+<text text-anchor="middle" x="1186.62" y="-922.9" font-family="Times,serif" font-size="13.00">trie</text>
+<text text-anchor="middle" x="1186.62" y="-907.9" font-family="Times,serif" font-size="13.00">(*Trie)</text>
+<text text-anchor="middle" x="1186.62" y="-892.9" font-family="Times,serif" font-size="13.00">update</text>
+<text text-anchor="middle" x="1186.62" y="-877.9" font-family="Times,serif" font-size="13.00">0.16GB (1.42%)</text>
+<text text-anchor="middle" x="1186.62" y="-862.9" font-family="Times,serif" font-size="13.00">of 1.55GB (13.63%)</text>
+</a>
+</g>
+</g>
+<!-- NN9_0 -->
+<g id="NN9_0" class="node">
+<title>NN9_0</title>
+<g id="a_NN9_0"><a xlink:title="0.16GB">
+<polygon fill="#f8f8f8" stroke="black" points="1213.62,-803.75 1163.62,-803.75 1159.62,-799.75 1159.62,-767.75 1209.62,-767.75 1213.62,-771.75 1213.62,-803.75"></polygon>
+<polyline fill="none" stroke="black" points="1209.62,-799.75 1159.62,-799.75"></polyline>
+<polyline fill="none" stroke="black" points="1209.62,-799.75 1209.62,-767.75"></polyline>
+<polyline fill="none" stroke="black" points="1209.62,-799.75 1213.62,-803.75"></polyline>
+<text text-anchor="middle" x="1186.62" y="-783.02" font-family="Times,serif" font-size="8.00">24B..80B</text>
+</a>
+</g>
+</g>
+<!-- N9&#45;&gt;NN9_0 -->
+<g id="edge9" class="edge">
+<title>N9-&gt;NN9_0</title>
+<g id="a_edge9"><a xlink:title="0.16GB">
+<path fill="none" stroke="black" d="M1186.62,-855.79C1186.62,-842.41 1186.62,-827.85 1186.62,-815.56"></path>
+<polygon fill="black" stroke="black" points="1190.13,-815.67 1186.63,-805.67 1183.13,-815.67 1190.13,-815.67"></polygon>
+</a>
+</g>
+<g id="a_edge9-label"><a xlink:title="0.16GB">
+<text text-anchor="middle" x="1209.88" y="-824.95" font-family="Times,serif" font-size="14.00"> 0.16GB</text>
+</a>
+</g>
+</g>
+<!-- N16 -->
+<g id="node16" class="node">
+<title>N16</title>
+<g id="a_node16"><a xlink:title="github.com/ethereum/go-ethereum/trie.(*Trie).insert (0.86GB)">
+<polygon fill="#ede9e4" stroke="#b2936f" points="1310.88,-730.75 1188.38,-730.75 1188.38,-640.25 1310.88,-640.25 1310.88,-730.75"></polygon>
+<text text-anchor="middle" x="1249.62" y="-713.45" font-family="Times,serif" font-size="14.00">trie</text>
+<text text-anchor="middle" x="1249.62" y="-696.95" font-family="Times,serif" font-size="14.00">(*Trie)</text>
+<text text-anchor="middle" x="1249.62" y="-680.45" font-family="Times,serif" font-size="14.00">insert</text>
+<text text-anchor="middle" x="1249.62" y="-663.95" font-family="Times,serif" font-size="14.00">0.26GB (2.30%)</text>
+<text text-anchor="middle" x="1249.62" y="-647.45" font-family="Times,serif" font-size="14.00">of 0.86GB (7.55%)</text>
+</a>
+</g>
+</g>
+<!-- N9&#45;&gt;N16 -->
+<g id="edge63" class="edge">
+<title>N9-&gt;N16</title>
+<g id="a_edge63"><a xlink:title="github.com/ethereum/go-ethereum/trie.(*Trie).update -&gt; github.com/ethereum/go-ethereum/trie.(*Trie).insert (0.86GB)">
+<path fill="none" stroke="#b2936f" d="M1225.8,-855.95C1229.66,-850.32 1233.08,-844.37 1235.62,-838.25 1248.15,-808.17 1251.87,-771.91 1252.35,-742.38"></path>
+<polygon fill="#b2936f" stroke="#b2936f" points="1255.85,-742.53 1252.38,-732.52 1248.85,-742.51 1255.85,-742.53"></polygon>
+</a>
+</g>
+<g id="a_edge63-label"><a xlink:title="github.com/ethereum/go-ethereum/trie.(*Trie).update -&gt; github.com/ethereum/go-ethereum/trie.(*Trie).insert (0.86GB)">
+<text text-anchor="middle" x="1274.88" y="-780.7" font-family="Times,serif" font-size="14.00"> 0.86GB</text>
+</a>
+</g>
+</g>
+<!-- N26 -->
+<g id="node26" class="node">
+<title>N26</title>
+<g id="a_node26"><a xlink:title="github.com/ethereum/go-ethereum/trie.keybytesToHex (0.53GB)">
+<polygon fill="#edeae7" stroke="#b2a188" points="1623.88,-718.75 1495.38,-718.75 1495.38,-652.25 1623.88,-652.25 1623.88,-718.75"></polygon>
+<text text-anchor="middle" x="1559.62" y="-698.6" font-family="Times,serif" font-size="17.00">trie</text>
+<text text-anchor="middle" x="1559.62" y="-679.1" font-family="Times,serif" font-size="17.00">keybytesToHex</text>
+<text text-anchor="middle" x="1559.62" y="-659.6" font-family="Times,serif" font-size="17.00">0.53GB (4.66%)</text>
+</a>
+</g>
+</g>
+<!-- N9&#45;&gt;N26 -->
+<g id="edge68" class="edge">
+<title>N9-&gt;N26</title>
+<g id="a_edge68"><a xlink:title="github.com/ethereum/go-ethereum/trie.(*Trie).update -&gt; github.com/ethereum/go-ethereum/trie.keybytesToHex (0.53GB)">
+<path fill="none" stroke="#b2a188" d="M1249.48,-861.32C1316.66,-823.45 1422.81,-763.62 1491.83,-724.71"></path>
+<polygon fill="#b2a188" stroke="#b2a188" points="1493.42,-727.83 1500.42,-719.87 1489.99,-721.74 1493.42,-727.83"></polygon>
+</a>
+</g>
+<g id="a_edge68-label"><a xlink:title="github.com/ethereum/go-ethereum/trie.(*Trie).update -&gt; github.com/ethereum/go-ethereum/trie.keybytesToHex (0.53GB)">
+<text text-anchor="middle" x="1436.88" y="-788.95" font-family="Times,serif" font-size="14.00"> 0.53GB</text>
+<text text-anchor="middle" x="1436.88" y="-772.45" font-family="Times,serif" font-size="14.00"> (inline)</text>
+</a>
+</g>
+</g>
+<!-- N10 -->
+<g id="node10" class="node">
+<title>N10</title>
+<g id="a_node10"><a xlink:title="github.com/ethereum/go-ethereum/trie.(*fullNode).copy (0.78GB)">
+<polygon fill="#ede9e4" stroke="#b29674" points="1649.62,-462 1507.62,-462 1507.62,-367 1649.62,-367 1649.62,-462"></polygon>
+<text text-anchor="middle" x="1578.62" y="-439.95" font-family="Times,serif" font-size="19.00">trie</text>
+<text text-anchor="middle" x="1578.62" y="-418.2" font-family="Times,serif" font-size="19.00">(*fullNode)</text>
+<text text-anchor="middle" x="1578.62" y="-396.45" font-family="Times,serif" font-size="19.00">copy</text>
+<text text-anchor="middle" x="1578.62" y="-374.7" font-family="Times,serif" font-size="19.00">0.78GB (6.91%)</text>
+</a>
+</g>
+</g>
+<!-- NN10_0 -->
+<g id="NN10_0" class="node">
+<title>NN10_0</title>
+<g id="a_NN10_0"><a xlink:title="0.78GB">
+<polygon fill="#f8f8f8" stroke="black" points="1605.62,-295.5 1555.62,-295.5 1551.62,-291.5 1551.62,-259.5 1601.62,-259.5 1605.62,-263.5 1605.62,-295.5"></polygon>
+<polyline fill="none" stroke="black" points="1601.62,-291.5 1551.62,-291.5"></polyline>
+<polyline fill="none" stroke="black" points="1601.62,-291.5 1601.62,-259.5"></polyline>
+<polyline fill="none" stroke="black" points="1601.62,-291.5 1605.62,-295.5"></polyline>
+<text text-anchor="middle" x="1578.62" y="-274.77" font-family="Times,serif" font-size="8.00">320B</text>
+</a>
+</g>
+</g>
+<!-- N10&#45;&gt;NN10_0 -->
+<g id="edge10" class="edge">
+<title>N10-&gt;NN10_0</title>
+<g id="a_edge10"><a xlink:title="0.78GB">
+<path fill="none" stroke="black" d="M1578.62,-366.66C1578.62,-346.83 1578.62,-324.37 1578.62,-307.09"></path>
+<polygon fill="black" stroke="black" points="1582.13,-307.29 1578.63,-297.29 1575.13,-307.29 1582.13,-307.29"></polygon>
+</a>
+</g>
+<g id="a_edge10-label"><a xlink:title="0.78GB">
+<text text-anchor="middle" x="1601.88" y="-335.7" font-family="Times,serif" font-size="14.00"> 0.78GB</text>
+</a>
+</g>
+</g>
+<!-- N11 -->
+<g id="node11" class="node">
+<title>N11</title>
+<g id="a_node11"><a xlink:title="encoding/json.(*decodeState).object (1.38GB)">
+<polygon fill="#ede5de" stroke="#b27846" points="1697.62,-1691.75 1609.62,-1691.75 1609.62,-1644.75 1697.62,-1644.75 1697.62,-1691.75"></polygon>
+<text text-anchor="middle" x="1653.62" y="-1680.15" font-family="Times,serif" font-size="8.00">json</text>
+<text text-anchor="middle" x="1653.62" y="-1670.4" font-family="Times,serif" font-size="8.00">(*decodeState)</text>
+<text text-anchor="middle" x="1653.62" y="-1660.65" font-family="Times,serif" font-size="8.00">object</text>
+<text text-anchor="middle" x="1653.62" y="-1650.9" font-family="Times,serif" font-size="8.00">0 of 1.38GB (12.13%)</text>
+</a>
+</g>
+</g>
+<!-- N14 -->
+<g id="node14" class="node">
+<title>N14</title>
+<g id="a_node14"><a xlink:title="encoding/json.(*decodeState).value (1.38GB)">
+<polygon fill="#ede5de" stroke="#b27846" points="1696.62,-1855.75 1608.62,-1855.75 1608.62,-1808.75 1696.62,-1808.75 1696.62,-1855.75"></polygon>
+<text text-anchor="middle" x="1652.62" y="-1844.15" font-family="Times,serif" font-size="8.00">json</text>
+<text text-anchor="middle" x="1652.62" y="-1834.4" font-family="Times,serif" font-size="8.00">(*decodeState)</text>
+<text text-anchor="middle" x="1652.62" y="-1824.65" font-family="Times,serif" font-size="8.00">value</text>
+<text text-anchor="middle" x="1652.62" y="-1814.9" font-family="Times,serif" font-size="8.00">0 of 1.38GB (12.13%)</text>
+</a>
+</g>
+</g>
+<!-- N11&#45;&gt;N14 -->
+<g id="edge56" class="edge">
+<title>N11-&gt;N14</title>
+<g id="a_edge56"><a xlink:title="encoding/json.(*decodeState).object -&gt; encoding/json.(*decodeState).value (0.99GB)">
+<path fill="none" stroke="#b28d64" d="M1676.19,-1691.98C1685.69,-1703.13 1695.68,-1717.36 1700.62,-1732.25 1705.25,-1746.17 1705.16,-1751.3 1700.62,-1765.25 1696.67,-1777.42 1689.52,-1789.22 1681.94,-1799.4"></path>
+<polygon fill="#b28d64" stroke="#b28d64" points="1679.33,-1797.05 1675.86,-1807.06 1684.82,-1801.4 1679.33,-1797.05"></polygon>
+</a>
+</g>
+<g id="a_edge56-label"><a xlink:title="encoding/json.(*decodeState).object -&gt; encoding/json.(*decodeState).value (0.99GB)">
+<text text-anchor="middle" x="1727.88" y="-1743.7" font-family="Times,serif" font-size="14.00"> 0.99GB</text>
+</a>
+</g>
+</g>
+<!-- N15 -->
+<g id="node15" class="node">
+<title>N15</title>
+<g id="a_node15"><a xlink:title="github.com/ethereum/go-ethereum/core.(*Genesis).UnmarshalJSON (1.38GB)">
+<polygon fill="#ede5de" stroke="#b27846" points="1730.62,-1549.12 1582.62,-1549.12 1582.62,-1447.38 1730.62,-1447.38 1730.62,-1549.12"></polygon>
+<text text-anchor="middle" x="1656.62" y="-1529.92" font-family="Times,serif" font-size="16.00">core</text>
+<text text-anchor="middle" x="1656.62" y="-1511.17" font-family="Times,serif" font-size="16.00">(*Genesis)</text>
+<text text-anchor="middle" x="1656.62" y="-1492.42" font-family="Times,serif" font-size="16.00">UnmarshalJSON</text>
+<text text-anchor="middle" x="1656.62" y="-1473.67" font-family="Times,serif" font-size="16.00">0.39GB (3.43%)</text>
+<text text-anchor="middle" x="1656.62" y="-1454.92" font-family="Times,serif" font-size="16.00">of 1.38GB (12.13%)</text>
+</a>
+</g>
+</g>
+<!-- N11&#45;&gt;N15 -->
+<g id="edge47" class="edge">
+<title>N11-&gt;N15</title>
+<g id="a_edge47"><a xlink:title="encoding/json.(*decodeState).object -&gt; github.com/ethereum/go-ethereum/core.(*Genesis).UnmarshalJSON (1.38GB)">
+<path fill="none" stroke="#b27846" d="M1654.03,-1644.59C1654.41,-1623.17 1655,-1590.03 1655.53,-1560.8"></path>
+<polygon fill="#b27846" stroke="#b27846" points="1659.02,-1560.98 1655.7,-1550.92 1652.02,-1560.86 1659.02,-1560.98"></polygon>
+</a>
+</g>
+<g id="a_edge47-label"><a xlink:title="encoding/json.(*decodeState).object -&gt; github.com/ethereum/go-ethereum/core.(*Genesis).UnmarshalJSON (1.38GB)">
+<text text-anchor="middle" x="1678.88" y="-1590.95" font-family="Times,serif" font-size="14.00"> 1.38GB</text>
+</a>
+</g>
+</g>
+<!-- N21 -->
+<g id="node21" class="node">
+<title>N21</title>
+<g id="a_node21"><a xlink:title="github.com/ethereum/go-ethereum/core/types.(*Account).UnmarshalJSON (0.99GB)">
+<polygon fill="#ede8e2" stroke="#b28d64" points="1564.5,-1558.5 1394.75,-1558.5 1394.75,-1438 1564.5,-1438 1564.5,-1558.5"></polygon>
+<text text-anchor="middle" x="1479.62" y="-1535.5" font-family="Times,serif" font-size="20.00">types</text>
+<text text-anchor="middle" x="1479.62" y="-1513" font-family="Times,serif" font-size="20.00">(*Account)</text>
+<text text-anchor="middle" x="1479.62" y="-1490.5" font-family="Times,serif" font-size="20.00">UnmarshalJSON</text>
+<text text-anchor="middle" x="1479.62" y="-1468" font-family="Times,serif" font-size="20.00">0.91GB (8.00%)</text>
+<text text-anchor="middle" x="1479.62" y="-1445.5" font-family="Times,serif" font-size="20.00">of 0.99GB (8.70%)</text>
+</a>
+</g>
+</g>
+<!-- N11&#45;&gt;N21 -->
+<g id="edge57" class="edge">
+<title>N11-&gt;N21</title>
+<g id="a_edge57"><a xlink:title="encoding/json.(*decodeState).object -&gt; github.com/ethereum/go-ethereum/core/types.(*Account).UnmarshalJSON (0.99GB)">
+<path fill="none" stroke="#b28d64" d="M1630.16,-1644.59C1609.38,-1624.54 1577.98,-1594.22 1549.23,-1566.45"></path>
+<polygon fill="#b28d64" stroke="#b28d64" points="1551.91,-1564.18 1542.29,-1559.75 1547.05,-1569.22 1551.91,-1564.18"></polygon>
+</a>
+</g>
+<g id="a_edge57-label"><a xlink:title="encoding/json.(*decodeState).object -&gt; github.com/ethereum/go-ethereum/core/types.(*Account).UnmarshalJSON (0.99GB)">
+<text text-anchor="middle" x="1610.88" y="-1590.95" font-family="Times,serif" font-size="14.00"> 0.99GB</text>
+</a>
+</g>
+</g>
+<!-- N12 -->
+<g id="node12" class="node">
+<title>N12</title>
+<g id="a_node12"><a xlink:title="github.com/cockroachdb/pebble.(*Batch).init (1GB)">
+<polygon fill="#ede8e2" stroke="#b28c63" points="123.25,-1881.25 0,-1881.25 0,-1783.25 123.25,-1783.25 123.25,-1881.25"></polygon>
+<text text-anchor="middle" x="61.62" y="-1858.25" font-family="Times,serif" font-size="20.00">pebble</text>
+<text text-anchor="middle" x="61.62" y="-1835.75" font-family="Times,serif" font-size="20.00">(*Batch)</text>
+<text text-anchor="middle" x="61.62" y="-1813.25" font-family="Times,serif" font-size="20.00">init</text>
+<text text-anchor="middle" x="61.62" y="-1790.75" font-family="Times,serif" font-size="20.00">1GB (8.80%)</text>
+</a>
+</g>
+</g>
+<!-- NN12_0 -->
+<g id="NN12_0" class="node">
+<title>NN12_0</title>
+<g id="a_NN12_0"><a xlink:title="1GB">
+<polygon fill="#f8f8f8" stroke="black" points="88.62,-1686.25 38.62,-1686.25 34.62,-1682.25 34.62,-1650.25 84.62,-1650.25 88.62,-1654.25 88.62,-1686.25"></polygon>
+<polyline fill="none" stroke="black" points="84.62,-1682.25 34.62,-1682.25"></polyline>
+<polyline fill="none" stroke="black" points="84.62,-1682.25 84.62,-1650.25"></polyline>
+<polyline fill="none" stroke="black" points="84.62,-1682.25 88.62,-1686.25"></polyline>
+<text text-anchor="middle" x="61.62" y="-1665.53" font-family="Times,serif" font-size="8.00">1GB</text>
+</a>
+</g>
+</g>
+<!-- N12&#45;&gt;NN12_0 -->
+<g id="edge11" class="edge">
+<title>N12-&gt;NN12_0</title>
+<g id="a_edge11"><a xlink:title="1GB">
+<path fill="none" stroke="black" d="M61.62,-1783.08C61.62,-1755.29 61.62,-1721.28 61.62,-1697.71"></path>
+<polygon fill="black" stroke="black" points="65.13,-1697.94 61.63,-1687.94 58.13,-1697.94 65.13,-1697.94"></polygon>
+</a>
+</g>
+<g id="a_edge11-label"><a xlink:title="1GB">
+<text text-anchor="middle" x="76.25" y="-1743.7" font-family="Times,serif" font-size="14.00"> 1GB</text>
+</a>
+</g>
+</g>
+<!-- NN13_0 -->
+<g id="NN13_0" class="node">
+<title>NN13_0</title>
+<g id="a_NN13_0"><a xlink:title="0.82GB">
+<polygon fill="#f8f8f8" stroke="black" points="1424.62,-1686.25 1374.62,-1686.25 1370.62,-1682.25 1370.62,-1650.25 1420.62,-1650.25 1424.62,-1654.25 1424.62,-1686.25"></polygon>
+<polyline fill="none" stroke="black" points="1420.62,-1682.25 1370.62,-1682.25"></polyline>
+<polyline fill="none" stroke="black" points="1420.62,-1682.25 1420.62,-1650.25"></polyline>
+<polyline fill="none" stroke="black" points="1420.62,-1682.25 1424.62,-1686.25"></polyline>
+<text text-anchor="middle" x="1397.62" y="-1665.53" font-family="Times,serif" font-size="8.00">280.50MB</text>
+</a>
+</g>
+</g>
+<!-- N13&#45;&gt;NN13_0 -->
+<g id="edge12" class="edge">
+<title>N13-&gt;NN13_0</title>
+<g id="a_edge12"><a xlink:title="0.82GB">
+<path fill="none" stroke="black" d="M1397.62,-1783.08C1397.62,-1755.29 1397.62,-1721.28 1397.62,-1697.71"></path>
+<polygon fill="black" stroke="black" points="1401.13,-1697.94 1397.63,-1687.94 1394.13,-1697.94 1401.13,-1697.94"></polygon>
+</a>
+</g>
+<g id="a_edge12-label"><a xlink:title="0.82GB">
+<text text-anchor="middle" x="1420.88" y="-1743.7" font-family="Times,serif" font-size="14.00"> 0.82GB</text>
+</a>
+</g>
+</g>
+<!-- N14&#45;&gt;N11 -->
+<g id="edge49" class="edge">
+<title>N14-&gt;N11</title>
+<g id="a_edge49"><a xlink:title="encoding/json.(*decodeState).value -&gt; encoding/json.(*decodeState).object (1.38GB)">
+<path fill="none" stroke="#b27846" d="M1652.77,-1808.38C1652.94,-1781.01 1653.22,-1734.9 1653.41,-1703.32"></path>
+<polygon fill="#b27846" stroke="#b27846" points="1656.91,-1703.54 1653.48,-1693.51 1649.91,-1703.49 1656.91,-1703.54"></polygon>
+</a>
+</g>
+<g id="a_edge49-label"><a xlink:title="encoding/json.(*decodeState).value -&gt; encoding/json.(*decodeState).object (1.38GB)">
+<text text-anchor="middle" x="1676.88" y="-1743.7" font-family="Times,serif" font-size="14.00"> 1.38GB</text>
+</a>
+</g>
+</g>
+<!-- N43 -->
+<g id="node43" class="node">
+<title>N43</title>
+<g id="a_node43"><a xlink:title="encoding/json.(*decodeState).literalStore (0.07GB)">
+<polygon fill="#edecec" stroke="#b2b1ad" points="1834.75,-1691.75 1750.5,-1691.75 1750.5,-1644.75 1834.75,-1644.75 1834.75,-1691.75"></polygon>
+<text text-anchor="middle" x="1792.62" y="-1680.15" font-family="Times,serif" font-size="8.00">json</text>
+<text text-anchor="middle" x="1792.62" y="-1670.4" font-family="Times,serif" font-size="8.00">(*decodeState)</text>
+<text text-anchor="middle" x="1792.62" y="-1660.65" font-family="Times,serif" font-size="8.00">literalStore</text>
+<text text-anchor="middle" x="1792.62" y="-1650.9" font-family="Times,serif" font-size="8.00">0 of 0.07GB (0.61%)</text>
+</a>
+</g>
+</g>
+<!-- N14&#45;&gt;N43 -->
+<g id="edge82" class="edge">
+<title>N14-&gt;N43</title>
+<g id="a_edge82"><a xlink:title="encoding/json.(*decodeState).value -&gt; encoding/json.(*decodeState).literalStore (0.07GB)">
+<path fill="none" stroke="#b2b1ad" d="M1697.12,-1810.46C1716.91,-1799.36 1739.18,-1784.09 1754.62,-1765.25 1769.44,-1747.17 1779.03,-1722.6 1784.86,-1702.84"></path>
+<polygon fill="#b2b1ad" stroke="#b2b1ad" points="1788.21,-1703.88 1787.47,-1693.31 1781.46,-1702.03 1788.21,-1703.88"></polygon>
+</a>
+</g>
+<g id="a_edge82-label"><a xlink:title="encoding/json.(*decodeState).value -&gt; encoding/json.(*decodeState).literalStore (0.07GB)">
+<text text-anchor="middle" x="1796.88" y="-1743.7" font-family="Times,serif" font-size="14.00"> 0.07GB</text>
+</a>
+</g>
+</g>
+<!-- NN15_0 -->
+<g id="NN15_0" class="node">
+<title>NN15_0</title>
+<g id="a_NN15_0"><a xlink:title="0.39GB">
+<polygon fill="#f8f8f8" stroke="black" points="1683.62,-1374.25 1633.62,-1374.25 1629.62,-1370.25 1629.62,-1338.25 1679.62,-1338.25 1683.62,-1342.25 1683.62,-1374.25"></polygon>
+<polyline fill="none" stroke="black" points="1679.62,-1370.25 1629.62,-1370.25"></polyline>
+<polyline fill="none" stroke="black" points="1679.62,-1370.25 1679.62,-1338.25"></polyline>
+<polyline fill="none" stroke="black" points="1679.62,-1370.25 1683.62,-1374.25"></polyline>
+<text text-anchor="middle" x="1656.62" y="-1353.53" font-family="Times,serif" font-size="8.00">399.50MB</text>
+</a>
+</g>
+</g>
+<!-- N15&#45;&gt;NN15_0 -->
+<g id="edge13" class="edge">
+<title>N15-&gt;NN15_0</title>
+<g id="a_edge13"><a xlink:title="0.39GB">
+<path fill="none" stroke="black" d="M1656.62,-1447.1C1656.62,-1426.67 1656.62,-1403.79 1656.62,-1386.22"></path>
+<polygon fill="black" stroke="black" points="1660.13,-1386.26 1656.63,-1376.26 1653.13,-1386.26 1660.13,-1386.26"></polygon>
+</a>
+</g>
+<g id="a_edge13-label"><a xlink:title="0.39GB">
+<text text-anchor="middle" x="1679.88" y="-1395.45" font-family="Times,serif" font-size="14.00"> 0.39GB</text>
+</a>
+</g>
+</g>
+<!-- N34 -->
+<g id="node34" class="node">
+<title>N34</title>
+<g id="a_node34"><a xlink:title="encoding/json.Unmarshal (0.99GB)">
+<polygon fill="#ede8e2" stroke="#b28d64" points="1606.75,-1259.62 1522.5,-1259.62 1522.5,-1222.38 1606.75,-1222.38 1606.75,-1259.62"></polygon>
+<text text-anchor="middle" x="1564.62" y="-1248.03" font-family="Times,serif" font-size="8.00">json</text>
+<text text-anchor="middle" x="1564.62" y="-1238.28" font-family="Times,serif" font-size="8.00">Unmarshal</text>
+<text text-anchor="middle" x="1564.62" y="-1228.53" font-family="Times,serif" font-size="8.00">0 of 0.99GB (8.70%)</text>
+</a>
+</g>
+</g>
+<!-- N15&#45;&gt;N34 -->
+<g id="edge59" class="edge">
+<title>N15-&gt;N34</title>
+<g id="a_edge59"><a xlink:title="github.com/ethereum/go-ethereum/core.(*Genesis).UnmarshalJSON -&gt; encoding/json.Unmarshal (0.99GB)">
+<path fill="none" stroke="#b28d64" d="M1614.19,-1446.89C1598.81,-1425.78 1583.03,-1400.15 1574.12,-1374.25 1562.45,-1340.31 1561.47,-1298.65 1562.49,-1271.27"></path>
+<polygon fill="#b28d64" stroke="#b28d64" points="1565.97,-1271.79 1562.97,-1261.63 1558.98,-1271.45 1565.97,-1271.79"></polygon>
+</a>
+</g>
+<g id="a_edge59-label"><a xlink:title="github.com/ethereum/go-ethereum/core.(*Genesis).UnmarshalJSON -&gt; encoding/json.Unmarshal (0.99GB)">
+<text text-anchor="middle" x="1597.88" y="-1351.2" font-family="Times,serif" font-size="14.00"> 0.99GB</text>
+</a>
+</g>
+</g>
+<!-- N16&#45;&gt;N10 -->
+<g id="edge78" class="edge">
+<title>N16-&gt;N10</title>
+<g id="a_edge78"><a xlink:title="github.com/ethereum/go-ethereum/trie.(*Trie).insert -&gt; github.com/ethereum/go-ethereum/trie.(*fullNode).copy (0.17GB)">
+<path fill="none" stroke="#b2aea5" d="M1311.24,-639.76C1330.39,-624.39 1350.86,-606.34 1367.62,-587.75 1387.87,-565.3 1383.78,-552.41 1405.12,-531 1432.21,-503.82 1466.62,-479.35 1497.64,-459.99"></path>
+<polygon fill="#b2aea5" stroke="#b2aea5" points="1499.17,-463.16 1505.86,-454.95 1495.51,-457.2 1499.17,-463.16"></polygon>
+</a>
+</g>
+<g id="a_edge78-label"><a xlink:title="github.com/ethereum/go-ethereum/trie.(*Trie).insert -&gt; github.com/ethereum/go-ethereum/trie.(*fullNode).copy (0.17GB)">
+<text text-anchor="middle" x="1428.88" y="-562.58" font-family="Times,serif" font-size="14.00"> 0.17GB</text>
+<text text-anchor="middle" x="1428.88" y="-546.08" font-family="Times,serif" font-size="14.00"> (inline)</text>
+</a>
+</g>
+</g>
+<!-- NN16_0 -->
+<g id="NN16_0" class="node">
+<title>NN16_0</title>
+<g id="a_NN16_0"><a xlink:title="0.10GB">
+<polygon fill="#f8f8f8" stroke="black" points="1514.62,-577.38 1464.62,-577.38 1460.62,-573.38 1460.62,-541.38 1510.62,-541.38 1514.62,-545.38 1514.62,-577.38"></polygon>
+<polyline fill="none" stroke="black" points="1510.62,-573.38 1460.62,-573.38"></polyline>
+<polyline fill="none" stroke="black" points="1510.62,-573.38 1510.62,-541.38"></polyline>
+<polyline fill="none" stroke="black" points="1510.62,-573.38 1514.62,-577.38"></polyline>
+<text text-anchor="middle" x="1487.62" y="-556.65" font-family="Times,serif" font-size="8.00">80B</text>
+</a>
+</g>
+</g>
+<!-- N16&#45;&gt;NN16_0 -->
+<g id="edge14" class="edge">
+<title>N16-&gt;NN16_0</title>
+<g id="a_edge14"><a xlink:title="0.10GB">
+<path fill="none" stroke="black" d="M1311.23,-665.4C1341.81,-654.71 1378.73,-639.97 1409.62,-622.25 1427.75,-611.85 1446.16,-597.47 1460.53,-585.19"></path>
+<polygon fill="black" stroke="black" points="1462.55,-588.08 1467.78,-578.87 1457.94,-582.8 1462.55,-588.08"></polygon>
+</a>
+</g>
+<g id="a_edge14-label"><a xlink:title="0.10GB">
+<text text-anchor="middle" x="1455.88" y="-608.95" font-family="Times,serif" font-size="14.00"> 0.10GB</text>
+</a>
+</g>
+</g>
+<!-- NN16_1 -->
+<g id="NN16_1" class="node">
+<title>NN16_1</title>
+<g id="a_NN16_1"><a xlink:title="0.09GB">
+<polygon fill="#f8f8f8" stroke="black" points="1204.62,-577.38 1154.62,-577.38 1150.62,-573.38 1150.62,-541.38 1200.62,-541.38 1204.62,-545.38 1204.62,-577.38"></polygon>
+<polyline fill="none" stroke="black" points="1200.62,-573.38 1150.62,-573.38"></polyline>
+<polyline fill="none" stroke="black" points="1200.62,-573.38 1200.62,-541.38"></polyline>
+<polyline fill="none" stroke="black" points="1200.62,-573.38 1204.62,-577.38"></polyline>
+<text text-anchor="middle" x="1177.62" y="-556.65" font-family="Times,serif" font-size="8.00">320B</text>
+</a>
+</g>
+</g>
+<!-- N16&#45;&gt;NN16_1 -->
+<g id="edge15" class="edge">
+<title>N16-&gt;NN16_1</title>
+<g id="a_edge15"><a xlink:title="0.09GB">
+<path fill="none" stroke="black" d="M1210.47,-639.91C1206.34,-634.17 1202.44,-628.21 1199.12,-622.25 1193.3,-611.78 1188.62,-599.44 1185.14,-588.55"></path>
+<polygon fill="black" stroke="black" points="1188.6,-587.89 1182.38,-579.31 1181.89,-589.9 1188.6,-587.89"></polygon>
+</a>
+</g>
+<g id="a_edge15-label"><a xlink:title="0.09GB">
+<text text-anchor="middle" x="1222.88" y="-608.95" font-family="Times,serif" font-size="14.00"> 0.09GB</text>
+</a>
+</g>
+</g>
+<!-- NN16_2 -->
+<g id="NN16_2" class="node">
+<title>NN16_2</title>
+<g id="a_NN16_2"><a xlink:title="0.07GB">
+<polygon fill="#f8f8f8" stroke="black" points="1276.62,-577.38 1226.62,-577.38 1222.62,-573.38 1222.62,-541.38 1272.62,-541.38 1276.62,-545.38 1276.62,-577.38"></polygon>
+<polyline fill="none" stroke="black" points="1272.62,-573.38 1222.62,-573.38"></polyline>
+<polyline fill="none" stroke="black" points="1272.62,-573.38 1272.62,-541.38"></polyline>
+<polyline fill="none" stroke="black" points="1272.62,-573.38 1276.62,-577.38"></polyline>
+<text text-anchor="middle" x="1249.62" y="-556.65" font-family="Times,serif" font-size="8.00">16B</text>
+</a>
+</g>
+</g>
+<!-- N16&#45;&gt;NN16_2 -->
+<g id="edge16" class="edge">
+<title>N16-&gt;NN16_2</title>
+<g id="a_edge16"><a xlink:title="0.07GB">
+<path fill="none" stroke="black" d="M1249.62,-640.04C1249.62,-623.02 1249.62,-604.08 1249.62,-588.94"></path>
+<polygon fill="black" stroke="black" points="1253.13,-589.23 1249.63,-579.23 1246.13,-589.23 1253.13,-589.23"></polygon>
+</a>
+</g>
+<g id="a_edge16-label"><a xlink:title="0.07GB">
+<text text-anchor="middle" x="1272.88" y="-608.95" font-family="Times,serif" font-size="14.00"> 0.07GB</text>
+</a>
+</g>
+</g>
+<!-- N28 -->
+<g id="node28" class="node">
+<title>N28</title>
+<g id="a_node28"><a xlink:title="github.com/ethereum/go-ethereum/trie.(*tracer).onInsert (0.43GB)">
+<polygon fill="#edebe8" stroke="#b2a591" points="1373.88,-456 1251.38,-456 1251.38,-373 1373.88,-373 1373.88,-456"></polygon>
+<text text-anchor="middle" x="1312.62" y="-436.8" font-family="Times,serif" font-size="16.00">trie</text>
+<text text-anchor="middle" x="1312.62" y="-418.05" font-family="Times,serif" font-size="16.00">(*tracer)</text>
+<text text-anchor="middle" x="1312.62" y="-399.3" font-family="Times,serif" font-size="16.00">onInsert</text>
+<text text-anchor="middle" x="1312.62" y="-380.55" font-family="Times,serif" font-size="16.00">0.43GB (3.75%)</text>
+</a>
+</g>
+</g>
+<!-- N16&#45;&gt;N28 -->
+<g id="edge72" class="edge">
+<title>N16-&gt;N28</title>
+<g id="a_edge72"><a xlink:title="github.com/ethereum/go-ethereum/trie.(*Trie).insert -&gt; github.com/ethereum/go-ethereum/trie.(*tracer).onInsert (0.43GB)">
+<path fill="none" stroke="#b2a591" d="M1289.64,-639.84C1293.18,-634.2 1296.3,-628.28 1298.62,-622.25 1317.85,-572.27 1319.45,-510.51 1317.42,-467.57"></path>
+<polygon fill="#b2a591" stroke="#b2a591" points="1320.93,-467.56 1316.87,-457.77 1313.94,-467.95 1320.93,-467.56"></polygon>
+</a>
+</g>
+<g id="a_edge72-label"><a xlink:title="github.com/ethereum/go-ethereum/trie.(*Trie).insert -&gt; github.com/ethereum/go-ethereum/trie.(*tracer).onInsert (0.43GB)">
+<text text-anchor="middle" x="1340.88" y="-562.58" font-family="Times,serif" font-size="14.00"> 0.43GB</text>
+<text text-anchor="middle" x="1340.88" y="-546.08" font-family="Times,serif" font-size="14.00"> (inline)</text>
+</a>
+</g>
+</g>
+<!-- N17&#45;&gt;N9 -->
+<g id="edge45" class="edge">
+<title>N17-&gt;N9</title>
+<g id="a_edge45"><a xlink:title="github.com/ethereum/go-ethereum/trie.(*Trie).Update -&gt; github.com/ethereum/go-ethereum/trie.(*Trie).update (1.55GB)">
+<path fill="none" stroke="#b26f38" d="M1186.62,-1007.76C1186.62,-992.07 1186.62,-970.65 1186.62,-950.95"></path>
+<polygon fill="#b26f38" stroke="#b26f38" points="1190.13,-951.11 1186.63,-941.11 1183.13,-951.11 1190.13,-951.11"></polygon>
+</a>
+</g>
+<g id="a_edge45-label"><a xlink:title="github.com/ethereum/go-ethereum/trie.(*Trie).Update -&gt; github.com/ethereum/go-ethereum/trie.(*Trie).update (1.55GB)">
+<text text-anchor="middle" x="1209.88" y="-968.7" font-family="Times,serif" font-size="14.00"> 1.55GB</text>
+</a>
+</g>
+</g>
+<!-- N18&#45;&gt;N12 -->
+<g id="edge55" class="edge">
+<title>N18-&gt;N12</title>
+<g id="a_edge55"><a xlink:title="github.com/ethereum/go-ethereum/core.flushAlloc ... github.com/cockroachdb/pebble.(*Batch).init (1GB)">
+<path fill="none" stroke="#b28c63" stroke-dasharray="1,5" d="M1033.38,-1953.41C947.98,-1947.74 754.51,-1933.98 592.38,-1915.75 483.65,-1903.53 456.76,-1897.94 348.62,-1881.25 275.84,-1870.01 192.88,-1856.01 134.94,-1846.03"></path>
+<polygon fill="#b28c63" stroke="#b28c63" points="135.64,-1842.6 125.19,-1844.35 134.45,-1849.5 135.64,-1842.6"></polygon>
+</a>
+</g>
+<g id="a_edge55-label"><a xlink:title="github.com/ethereum/go-ethereum/core.flushAlloc ... github.com/cockroachdb/pebble.(*Batch).init (1GB)">
+<text text-anchor="middle" x="607.25" y="-1902.45" font-family="Times,serif" font-size="14.00"> 1GB</text>
+</a>
+</g>
+</g>
+<!-- N30 -->
+<g id="node30" class="node">
+<title>N30</title>
+<g id="a_node30"><a xlink:title="github.com/ethereum/go-ethereum/core/rawdb.(*freezerTableBatch).AppendRaw (0.53GB)">
+<polygon fill="#edeae7" stroke="#b2a189" points="443.5,-1855.75 357.75,-1855.75 357.75,-1808.75 443.5,-1808.75 443.5,-1855.75"></polygon>
+<text text-anchor="middle" x="400.62" y="-1844.15" font-family="Times,serif" font-size="8.00">rawdb</text>
+<text text-anchor="middle" x="400.62" y="-1834.4" font-family="Times,serif" font-size="8.00">(*freezerTableBatch)</text>
+<text text-anchor="middle" x="400.62" y="-1824.65" font-family="Times,serif" font-size="8.00">AppendRaw</text>
+<text text-anchor="middle" x="400.62" y="-1814.9" font-family="Times,serif" font-size="8.00">0 of 0.53GB (4.65%)</text>
+</a>
+</g>
+</g>
+<!-- N18&#45;&gt;N30 -->
+<g id="edge69" class="edge">
+<title>N18-&gt;N30</title>
+<g id="a_edge69"><a xlink:title="github.com/ethereum/go-ethereum/core.flushAlloc ... github.com/ethereum/go-ethereum/core/rawdb.(*freezerTableBatch).AppendRaw (0.53GB)">
+<path fill="none" stroke="#b2a189" stroke-dasharray="1,5" d="M1033.41,-1953.06C940.65,-1945.71 719.34,-1924.8 538.62,-1881.25 510.25,-1874.41 479.5,-1864.02 454.25,-1854.66"></path>
+<polygon fill="#b2a189" stroke="#b2a189" points="455.79,-1851.5 445.2,-1851.25 453.33,-1858.05 455.79,-1851.5"></polygon>
+</a>
+</g>
+<g id="a_edge69-label"><a xlink:title="github.com/ethereum/go-ethereum/core.flushAlloc ... github.com/ethereum/go-ethereum/core/rawdb.(*freezerTableBatch).AppendRaw (0.53GB)">
+<text text-anchor="middle" x="738.88" y="-1902.45" font-family="Times,serif" font-size="14.00"> 0.53GB</text>
+</a>
+</g>
+</g>
+<!-- N19 -->
+<g id="node19" class="node">
+<title>N19</title>
+<g id="a_node19"><a xlink:title="github.com/ethereum/go-ethereum/core/state.newObject (0.69GB)">
+<polygon fill="#edeae5" stroke="#b29b7c" points="667,-1714.25 512.25,-1714.25 512.25,-1622.25 667,-1622.25 667,-1714.25"></polygon>
+<text text-anchor="middle" x="589.62" y="-1693.15" font-family="Times,serif" font-size="18.00">state</text>
+<text text-anchor="middle" x="589.62" y="-1672.15" font-family="Times,serif" font-size="18.00">newObject</text>
+<text text-anchor="middle" x="589.62" y="-1651.15" font-family="Times,serif" font-size="18.00">0.66GB (5.84%)</text>
+<text text-anchor="middle" x="589.62" y="-1630.15" font-family="Times,serif" font-size="18.00">of 0.69GB (6.08%)</text>
+</a>
+</g>
+</g>
+<!-- NN19_0 -->
+<g id="NN19_0" class="node">
+<title>NN19_0</title>
+<g id="a_NN19_0"><a xlink:title="0.39GB">
+<polygon fill="#f8f8f8" stroke="black" points="544.62,-1516.25 494.62,-1516.25 490.62,-1512.25 490.62,-1480.25 540.62,-1480.25 544.62,-1484.25 544.62,-1516.25"></polygon>
+<polyline fill="none" stroke="black" points="540.62,-1512.25 490.62,-1512.25"></polyline>
+<polyline fill="none" stroke="black" points="540.62,-1512.25 540.62,-1480.25"></polyline>
+<polyline fill="none" stroke="black" points="540.62,-1512.25 544.62,-1516.25"></polyline>
+<text text-anchor="middle" x="517.62" y="-1495.53" font-family="Times,serif" font-size="8.00">224B</text>
+</a>
+</g>
+</g>
+<!-- N19&#45;&gt;NN19_0 -->
+<g id="edge17" class="edge">
+<title>N19-&gt;NN19_0</title>
+<g id="a_edge17"><a xlink:title="0.39GB">
+<path fill="none" stroke="black" d="M549.2,-1621.77C545.4,-1616.11 541.92,-1610.21 539.12,-1604.25 527.7,-1579.92 522.33,-1549.61 519.81,-1527.82"></path>
+<polygon fill="black" stroke="black" points="523.29,-1527.49 518.81,-1517.89 516.33,-1528.19 523.29,-1527.49"></polygon>
+</a>
+</g>
+<g id="a_edge17-label"><a xlink:title="0.39GB">
+<text text-anchor="middle" x="562.88" y="-1590.95" font-family="Times,serif" font-size="14.00"> 0.39GB</text>
+</a>
+</g>
+</g>
+<!-- NN19_1 -->
+<g id="NN19_1" class="node">
+<title>NN19_1</title>
+<g id="a_NN19_1"><a xlink:title="0.27GB">
+<polygon fill="#f8f8f8" stroke="black" points="616.62,-1516.25 566.62,-1516.25 562.62,-1512.25 562.62,-1480.25 612.62,-1480.25 616.62,-1484.25 616.62,-1516.25"></polygon>
+<polyline fill="none" stroke="black" points="612.62,-1512.25 562.62,-1512.25"></polyline>
+<polyline fill="none" stroke="black" points="612.62,-1512.25 612.62,-1480.25"></polyline>
+<polyline fill="none" stroke="black" points="612.62,-1512.25 616.62,-1516.25"></polyline>
+<text text-anchor="middle" x="589.62" y="-1495.53" font-family="Times,serif" font-size="8.00">48B</text>
+</a>
+</g>
+</g>
+<!-- N19&#45;&gt;NN19_1 -->
+<g id="edge18" class="edge">
+<title>N19-&gt;NN19_1</title>
+<g id="a_edge18"><a xlink:title="0.27GB">
+<path fill="none" stroke="black" d="M589.62,-1621.79C589.62,-1591.75 589.62,-1553.33 589.62,-1527.59"></path>
+<polygon fill="black" stroke="black" points="593.13,-1527.91 589.63,-1517.91 586.13,-1527.91 593.13,-1527.91"></polygon>
+</a>
+</g>
+<g id="a_edge18-label"><a xlink:title="0.27GB">
+<text text-anchor="middle" x="612.88" y="-1590.95" font-family="Times,serif" font-size="14.00"> 0.27GB</text>
+</a>
+</g>
+</g>
+<!-- N20 -->
+<g id="node20" class="node">
+<title>N20</title>
+<g id="a_node20"><a xlink:title="encoding/json.(*decodeState).unmarshal (1.38GB)">
+<polygon fill="#ede5de" stroke="#b27846" points="1696.62,-1980.75 1608.62,-1980.75 1608.62,-1933.75 1696.62,-1933.75 1696.62,-1980.75"></polygon>
+<text text-anchor="middle" x="1652.62" y="-1969.15" font-family="Times,serif" font-size="8.00">json</text>
+<text text-anchor="middle" x="1652.62" y="-1959.4" font-family="Times,serif" font-size="8.00">(*decodeState)</text>
+<text text-anchor="middle" x="1652.62" y="-1949.65" font-family="Times,serif" font-size="8.00">unmarshal</text>
+<text text-anchor="middle" x="1652.62" y="-1939.9" font-family="Times,serif" font-size="8.00">0 of 1.38GB (12.13%)</text>
+</a>
+</g>
+</g>
+<!-- N20&#45;&gt;N14 -->
+<g id="edge48" class="edge">
+<title>N20-&gt;N14</title>
+<g id="a_edge48"><a xlink:title="encoding/json.(*decodeState).unmarshal -&gt; encoding/json.(*decodeState).value (1.38GB)">
+<path fill="none" stroke="#b27846" d="M1652.62,-1933.4C1652.62,-1914.85 1652.62,-1888.4 1652.62,-1867.34"></path>
+<polygon fill="#b27846" stroke="#b27846" points="1656.13,-1867.49 1652.63,-1857.49 1649.13,-1867.49 1656.13,-1867.49"></polygon>
+</a>
+</g>
+<g id="a_edge48-label"><a xlink:title="encoding/json.(*decodeState).unmarshal -&gt; encoding/json.(*decodeState).value (1.38GB)">
+<text text-anchor="middle" x="1675.88" y="-1902.45" font-family="Times,serif" font-size="14.00"> 1.38GB</text>
+</a>
+</g>
+</g>
+<!-- NN21_0 -->
+<g id="NN21_0" class="node">
+<title>NN21_0</title>
+<g id="a_NN21_0"><a xlink:title="0.82GB">
+<polygon fill="#f8f8f8" stroke="black" points="1506.62,-1374.25 1456.62,-1374.25 1452.62,-1370.25 1452.62,-1338.25 1502.62,-1338.25 1506.62,-1342.25 1506.62,-1374.25"></polygon>
+<polyline fill="none" stroke="black" points="1502.62,-1370.25 1452.62,-1370.25"></polyline>
+<polyline fill="none" stroke="black" points="1502.62,-1370.25 1502.62,-1338.25"></polyline>
+<polyline fill="none" stroke="black" points="1502.62,-1370.25 1506.62,-1374.25"></polyline>
+<text text-anchor="middle" x="1479.62" y="-1353.53" font-family="Times,serif" font-size="8.00">280.50MB</text>
+</a>
+</g>
+</g>
+<!-- N21&#45;&gt;NN21_0 -->
+<g id="edge19" class="edge">
+<title>N21-&gt;NN21_0</title>
+<g id="a_edge19"><a xlink:title="0.82GB">
+<path fill="none" stroke="black" d="M1479.62,-1437.88C1479.62,-1419.77 1479.62,-1400.68 1479.62,-1385.63"></path>
+<polygon fill="black" stroke="black" points="1483.13,-1386.03 1479.63,-1376.03 1476.13,-1386.03 1483.13,-1386.03"></polygon>
+</a>
+</g>
+<g id="a_edge19-label"><a xlink:title="0.82GB">
+<text text-anchor="middle" x="1502.88" y="-1395.45" font-family="Times,serif" font-size="14.00"> 0.82GB</text>
+</a>
+</g>
+</g>
+<!-- N21&#45;&gt;N34 -->
+<g id="edge81" class="edge">
+<title>N21-&gt;N34</title>
+<g id="a_edge81"><a xlink:title="github.com/ethereum/go-ethereum/core/types.(*Account).UnmarshalJSON -&gt; encoding/json.Unmarshal (0.08GB)">
+<path fill="none" stroke="#b2b1ac" d="M1418.69,-1437.65C1395.39,-1407.5 1378.43,-1370.55 1397.12,-1338.25 1421.54,-1296.06 1472.22,-1270.75 1511.47,-1256.76"></path>
+<polygon fill="#b2b1ac" stroke="#b2b1ac" points="1512.44,-1260.13 1520.78,-1253.59 1510.18,-1253.5 1512.44,-1260.13"></polygon>
+</a>
+</g>
+<g id="a_edge81-label"><a xlink:title="github.com/ethereum/go-ethereum/core/types.(*Account).UnmarshalJSON -&gt; encoding/json.Unmarshal (0.08GB)">
+<text text-anchor="middle" x="1420.88" y="-1351.2" font-family="Times,serif" font-size="14.00"> 0.08GB</text>
+</a>
+</g>
+</g>
+<!-- N22 -->
+<g id="node22" class="node">
+<title>N22</title>
+<g id="a_node22"><a xlink:title="github.com/ethereum/go-ethereum/trie.(*hasher).hashFullNodeChildren.func1 (1.29GB)">
+<polygon fill="#ede6df" stroke="#b27d4d" points="1832.62,-587.75 1744.62,-587.75 1744.62,-531 1832.62,-531 1832.62,-587.75"></polygon>
+<text text-anchor="middle" x="1788.62" y="-576.15" font-family="Times,serif" font-size="8.00">trie</text>
+<text text-anchor="middle" x="1788.62" y="-566.4" font-family="Times,serif" font-size="8.00">(*hasher)</text>
+<text text-anchor="middle" x="1788.62" y="-556.65" font-family="Times,serif" font-size="8.00">hashFullNodeChildren</text>
+<text text-anchor="middle" x="1788.62" y="-546.9" font-family="Times,serif" font-size="8.00">func1</text>
+<text text-anchor="middle" x="1788.62" y="-537.15" font-family="Times,serif" font-size="8.00">0 of 1.29GB (11.36%)</text>
+</a>
+</g>
+</g>
+<!-- N22&#45;&gt;N8 -->
+<g id="edge52" class="edge">
+<title>N22-&gt;N8</title>
+<g id="a_edge52"><a xlink:title="github.com/ethereum/go-ethereum/trie.(*hasher).hashFullNodeChildren.func1 -&gt; github.com/ethereum/go-ethereum/trie.(*hasher).hash (1.29GB)">
+<path fill="none" stroke="#b27d4d" d="M1780.43,-530.52C1775.51,-515.25 1768.65,-496.18 1760.62,-480 1755.18,-469.02 1748.25,-457.63 1741.6,-447.54"></path>
+<polygon fill="#b27d4d" stroke="#b27d4d" points="1744.7,-445.88 1736.2,-439.56 1738.9,-449.81 1744.7,-445.88"></polygon>
+</a>
+</g>
+<g id="a_edge52-label"><a xlink:title="github.com/ethereum/go-ethereum/trie.(*hasher).hashFullNodeChildren.func1 -&gt; github.com/ethereum/go-ethereum/trie.(*hasher).hash (1.29GB)">
+<text text-anchor="middle" x="1797.88" y="-491.45" font-family="Times,serif" font-size="14.00"> 1.29GB</text>
+</a>
+</g>
+</g>
+<!-- N23 -->
+<g id="node23" class="node">
+<title>N23</title>
+<g id="a_node23"><a xlink:title="github.com/ethereum/go-ethereum/trie.(*StateTrie).UpdateAccount (0.88GB)">
+<polygon fill="#ede8e3" stroke="#b2926d" points="577.62,-1282.5 459.62,-1282.5 459.62,-1199.5 577.62,-1199.5 577.62,-1282.5"></polygon>
+<text text-anchor="middle" x="518.62" y="-1266.15" font-family="Times,serif" font-size="13.00">trie</text>
+<text text-anchor="middle" x="518.62" y="-1251.15" font-family="Times,serif" font-size="13.00">(*StateTrie)</text>
+<text text-anchor="middle" x="518.62" y="-1236.15" font-family="Times,serif" font-size="13.00">UpdateAccount</text>
+<text text-anchor="middle" x="518.62" y="-1221.15" font-family="Times,serif" font-size="13.00">0.16GB (1.41%)</text>
+<text text-anchor="middle" x="518.62" y="-1206.15" font-family="Times,serif" font-size="13.00">of 0.88GB (7.75%)</text>
+</a>
+</g>
+</g>
+<!-- N23&#45;&gt;N17 -->
+<g id="edge66" class="edge">
+<title>N23-&gt;N17</title>
+<g id="a_edge66"><a xlink:title="github.com/ethereum/go-ethereum/trie.(*StateTrie).UpdateAccount -&gt; github.com/ethereum/go-ethereum/trie.(*Trie).Update (0.62GB)">
+<path fill="none" stroke="#b29e81" d="M578.02,-1210.55C646.97,-1177.44 764.83,-1124.16 871.12,-1092.25 960.21,-1065.51 1067.2,-1048.35 1130.91,-1039.64"></path>
+<polygon fill="#b29e81" stroke="#b29e81" points="1131.35,-1043.11 1140.79,-1038.31 1130.41,-1036.18 1131.35,-1043.11"></polygon>
+</a>
+</g>
+<g id="a_edge66-label"><a xlink:title="github.com/ethereum/go-ethereum/trie.(*StateTrie).UpdateAccount -&gt; github.com/ethereum/go-ethereum/trie.(*Trie).Update (0.62GB)">
+<text text-anchor="middle" x="894.88" y="-1113.45" font-family="Times,serif" font-size="14.00"> 0.62GB</text>
+<text text-anchor="middle" x="894.88" y="-1096.95" font-family="Times,serif" font-size="14.00"> (inline)</text>
+</a>
+</g>
+</g>
+<!-- NN23_0 -->
+<g id="NN23_0" class="node">
+<title>NN23_0</title>
+<g id="a_NN23_0"><a xlink:title="0.09GB">
+<polygon fill="#f8f8f8" stroke="black" points="617.62,-1128.25 567.62,-1128.25 563.62,-1124.25 563.62,-1092.25 613.62,-1092.25 617.62,-1096.25 617.62,-1128.25"></polygon>
+<polyline fill="none" stroke="black" points="613.62,-1124.25 563.62,-1124.25"></polyline>
+<polyline fill="none" stroke="black" points="613.62,-1124.25 613.62,-1092.25"></polyline>
+<polyline fill="none" stroke="black" points="613.62,-1124.25 617.62,-1128.25"></polyline>
+<text text-anchor="middle" x="590.62" y="-1107.53" font-family="Times,serif" font-size="8.00">89.25MB</text>
+</a>
+</g>
+</g>
+<!-- N23&#45;&gt;NN23_0 -->
+<g id="edge20" class="edge">
+<title>N23-&gt;NN23_0</title>
+<g id="a_edge20"><a xlink:title="0.09GB">
+<path fill="none" stroke="black" d="M546.95,-1199.09C554.41,-1187.58 562.17,-1174.88 568.62,-1162.75 572.66,-1155.17 576.53,-1146.68 579.87,-1138.82"></path>
+<polygon fill="black" stroke="black" points="583.06,-1140.27 583.62,-1129.69 576.59,-1137.61 583.06,-1140.27"></polygon>
+</a>
+</g>
+<g id="a_edge20-label"><a xlink:title="0.09GB">
+<text text-anchor="middle" x="599.88" y="-1149.45" font-family="Times,serif" font-size="14.00"> 0.09GB</text>
+</a>
+</g>
+</g>
+<!-- NN23_1 -->
+<g id="NN23_1" class="node">
+<title>NN23_1</title>
+<g id="a_NN23_1"><a xlink:title="0.04GB">
+<polygon fill="#f8f8f8" stroke="black" points="545.62,-1128.25 495.62,-1128.25 491.62,-1124.25 491.62,-1092.25 541.62,-1092.25 545.62,-1096.25 545.62,-1128.25"></polygon>
+<polyline fill="none" stroke="black" points="541.62,-1124.25 491.62,-1124.25"></polyline>
+<polyline fill="none" stroke="black" points="541.62,-1124.25 541.62,-1092.25"></polyline>
+<polyline fill="none" stroke="black" points="541.62,-1124.25 545.62,-1128.25"></polyline>
+<text text-anchor="middle" x="518.62" y="-1107.53" font-family="Times,serif" font-size="8.00">24B..80B</text>
+</a>
+</g>
+</g>
+<!-- N23&#45;&gt;NN23_1 -->
+<g id="edge21" class="edge">
+<title>N23-&gt;NN23_1</title>
+<g id="a_edge21"><a xlink:title="0.04GB">
+<path fill="none" stroke="black" d="M518.62,-1199.26C518.62,-1179.96 518.62,-1157.37 518.62,-1139.91"></path>
+<polygon fill="black" stroke="black" points="522.13,-1139.99 518.63,-1129.99 515.13,-1139.99 522.13,-1139.99"></polygon>
+</a>
+</g>
+<g id="a_edge21-label"><a xlink:title="0.04GB">
+<text text-anchor="middle" x="541.88" y="-1149.45" font-family="Times,serif" font-size="14.00"> 0.04GB</text>
+</a>
+</g>
+</g>
+<!-- N23&#45;&gt;N37 -->
+<g id="edge80" class="edge">
+<title>N23-&gt;N37</title>
+<g id="a_edge80"><a xlink:title="github.com/ethereum/go-ethereum/trie.(*StateTrie).UpdateAccount -&gt; github.com/ethereum/go-ethereum/rlp.EncodeToBytes (0.10GB)">
+<path fill="none" stroke="#b2b0aa" d="M470.23,-1199.14C439.62,-1168.31 410.29,-1125.75 436.12,-1092.25 457.06,-1065.1 548.7,-1047.9 608.8,-1039.33"></path>
+<polygon fill="#b2b0aa" stroke="#b2b0aa" points="609.08,-1042.82 618.51,-1037.98 608.12,-1035.89 609.08,-1042.82"></polygon>
+</a>
+</g>
+<g id="a_edge80-label"><a xlink:title="github.com/ethereum/go-ethereum/trie.(*StateTrie).UpdateAccount -&gt; github.com/ethereum/go-ethereum/rlp.EncodeToBytes (0.10GB)">
+<text text-anchor="middle" x="459.88" y="-1105.2" font-family="Times,serif" font-size="14.00"> 0.10GB</text>
+</a>
+</g>
+</g>
+<!-- N24&#45;&gt;N8 -->
+<g id="edge53" class="edge">
+<title>N24-&gt;N8</title>
+<g id="a_edge53"><a xlink:title="github.com/ethereum/go-ethereum/trie.(*hasher).hashFullNodeChildren -&gt; github.com/ethereum/go-ethereum/trie.(*hasher).hash (1.29GB)">
+<path fill="none" stroke="#b27d4d" d="M1642.74,-535.39C1639.8,-519.2 1638.32,-497.39 1646.12,-480 1649.99,-471.39 1664.35,-457.97 1679.29,-445.59"></path>
+<polygon fill="#b27d4d" stroke="#b27d4d" points="1681.33,-448.44 1686.9,-439.42 1676.92,-443 1681.33,-448.44"></polygon>
+</a>
+</g>
+<g id="a_edge53-label"><a xlink:title="github.com/ethereum/go-ethereum/trie.(*hasher).hashFullNodeChildren -&gt; github.com/ethereum/go-ethereum/trie.(*hasher).hash (1.29GB)">
+<text text-anchor="middle" x="1669.88" y="-491.45" font-family="Times,serif" font-size="14.00"> 1.29GB</text>
+</a>
+</g>
+</g>
+<!-- N24&#45;&gt;N10 -->
+<g id="edge67" class="edge">
+<title>N24-&gt;N10</title>
+<g id="a_edge67"><a xlink:title="github.com/ethereum/go-ethereum/trie.(*hasher).hashFullNodeChildren -&gt; github.com/ethereum/go-ethereum/trie.(*fullNode).copy (0.62GB)">
+<path fill="none" stroke="#b29e82" d="M1609.96,-535.48C1602.23,-529.16 1594.99,-521.62 1590.12,-513 1583.44,-501.17 1579.81,-487.26 1577.97,-473.71"></path>
+<polygon fill="#b29e82" stroke="#b29e82" points="1581.47,-473.56 1576.97,-463.97 1574.51,-474.28 1581.47,-473.56"></polygon>
+</a>
+</g>
+<g id="a_edge67-label"><a xlink:title="github.com/ethereum/go-ethereum/trie.(*hasher).hashFullNodeChildren -&gt; github.com/ethereum/go-ethereum/trie.(*fullNode).copy (0.62GB)">
+<text text-anchor="middle" x="1613.88" y="-499.7" font-family="Times,serif" font-size="14.00"> 0.62GB</text>
+<text text-anchor="middle" x="1613.88" y="-483.2" font-family="Times,serif" font-size="14.00"> (inline)</text>
+</a>
+</g>
+</g>
+<!-- N25&#45;&gt;N23 -->
+<g id="edge62" class="edge">
+<title>N25-&gt;N23</title>
+<g id="a_edge62"><a xlink:title="github.com/ethereum/go-ethereum/core/state.(*StateDB).updateStateObject -&gt; github.com/ethereum/go-ethereum/trie.(*StateTrie).UpdateAccount (0.88GB)">
+<path fill="none" stroke="#b2926d" d="M655.3,-1452.6C646.01,-1443.5 635.85,-1434.39 625.62,-1426.75 586.19,-1397.3 554.86,-1415.57 528.12,-1374.25 512.98,-1350.85 510.04,-1320 511.14,-1293.98"></path>
+<polygon fill="#b2926d" stroke="#b2926d" points="514.62,-1294.5 511.77,-1284.3 507.63,-1294.05 514.62,-1294.5"></polygon>
+</a>
+</g>
+<g id="a_edge62-label"><a xlink:title="github.com/ethereum/go-ethereum/core/state.(*StateDB).updateStateObject -&gt; github.com/ethereum/go-ethereum/trie.(*StateTrie).UpdateAccount (0.88GB)">
+<text text-anchor="middle" x="551.88" y="-1351.2" font-family="Times,serif" font-size="14.00"> 0.88GB</text>
+</a>
+</g>
+</g>
+<!-- NN25_0 -->
+<g id="NN25_0" class="node">
+<title>NN25_0</title>
+<g id="a_NN25_0"><a xlink:title="0.12GB">
+<polygon fill="#f8f8f8" stroke="black" points="637.62,-1374.25 587.62,-1374.25 583.62,-1370.25 583.62,-1338.25 633.62,-1338.25 637.62,-1342.25 637.62,-1374.25"></polygon>
+<polyline fill="none" stroke="black" points="633.62,-1370.25 583.62,-1370.25"></polyline>
+<polyline fill="none" stroke="black" points="633.62,-1370.25 633.62,-1338.25"></polyline>
+<polyline fill="none" stroke="black" points="633.62,-1370.25 637.62,-1374.25"></polyline>
+<text text-anchor="middle" x="610.62" y="-1353.53" font-family="Times,serif" font-size="8.00">123.25MB</text>
+</a>
+</g>
+</g>
+<!-- N25&#45;&gt;NN25_0 -->
+<g id="edge22" class="edge">
+<title>N25-&gt;NN25_0</title>
+<g id="a_edge22"><a xlink:title="0.12GB">
+<path fill="none" stroke="black" d="M668.5,-1452.57C654.82,-1430.05 638.7,-1403.49 626.95,-1384.13"></path>
+<polygon fill="black" stroke="black" points="630.04,-1382.48 621.86,-1375.75 624.06,-1386.12 630.04,-1382.48"></polygon>
+</a>
+</g>
+<g id="a_edge22-label"><a xlink:title="0.12GB">
+<text text-anchor="middle" x="663.88" y="-1395.45" font-family="Times,serif" font-size="14.00"> 0.12GB</text>
+</a>
+</g>
+</g>
+<!-- NN25_1 -->
+<g id="NN25_1" class="node">
+<title>NN25_1</title>
+<g id="a_NN25_1"><a xlink:title="0.10GB">
+<polygon fill="#f8f8f8" stroke="black" points="735.12,-1374.25 660.12,-1374.25 656.12,-1370.25 656.12,-1338.25 731.12,-1338.25 735.12,-1342.25 735.12,-1374.25"></polygon>
+<polyline fill="none" stroke="black" points="731.12,-1370.25 656.12,-1370.25"></polyline>
+<polyline fill="none" stroke="black" points="731.12,-1370.25 731.12,-1338.25"></polyline>
+<polyline fill="none" stroke="black" points="731.12,-1370.25 735.12,-1374.25"></polyline>
+<text text-anchor="middle" x="695.62" y="-1353.53" font-family="Times,serif" font-size="8.00">76.50MB..97.75MB</text>
+</a>
+</g>
+</g>
+<!-- N25&#45;&gt;NN25_1 -->
+<g id="edge23" class="edge">
+<title>N25-&gt;NN25_1</title>
+<g id="a_edge23"><a xlink:title="0.10GB">
+<path fill="none" stroke="black" d="M695.62,-1452.57C695.62,-1430.67 695.62,-1404.95 695.62,-1385.75"></path>
+<polygon fill="black" stroke="black" points="699.13,-1385.97 695.63,-1375.97 692.13,-1385.97 699.13,-1385.97"></polygon>
+</a>
+</g>
+<g id="a_edge23-label"><a xlink:title="0.10GB">
+<text text-anchor="middle" x="718.88" y="-1395.45" font-family="Times,serif" font-size="14.00"> 0.10GB</text>
+</a>
+</g>
+</g>
+<!-- NN25_2 -->
+<g id="NN25_2" class="node">
+<title>NN25_2</title>
+<g id="a_NN25_2"><a xlink:title="0">
+<polygon fill="#f8f8f8" stroke="black" points="807.62,-1374.25 757.62,-1374.25 753.62,-1370.25 753.62,-1338.25 803.62,-1338.25 807.62,-1342.25 807.62,-1374.25"></polygon>
+<polyline fill="none" stroke="black" points="803.62,-1370.25 753.62,-1370.25"></polyline>
+<polyline fill="none" stroke="black" points="803.62,-1370.25 803.62,-1338.25"></polyline>
+<polyline fill="none" stroke="black" points="803.62,-1370.25 807.62,-1374.25"></polyline>
+<text text-anchor="middle" x="780.62" y="-1353.53" font-family="Times,serif" font-size="8.00">24B..80B</text>
+</a>
+</g>
+</g>
+<!-- N25&#45;&gt;NN25_2 -->
+<g id="edge24" class="edge">
+<title>N25-&gt;NN25_2</title>
+<g id="a_edge24"><a xlink:title="0">
+<path fill="none" stroke="black" d="M722.75,-1452.57C736.43,-1430.05 752.55,-1403.49 764.3,-1384.13"></path>
+<polygon fill="black" stroke="black" points="767.19,-1386.12 769.39,-1375.75 761.21,-1382.48 767.19,-1386.12"></polygon>
+</a>
+</g>
+<g id="a_edge24-label"><a xlink:title="0">
+<text text-anchor="middle" x="763.88" y="-1395.45" font-family="Times,serif" font-size="14.00"> 0</text>
+</a>
+</g>
+</g>
+<!-- NN26_0 -->
+<g id="NN26_0" class="node">
+<title>NN26_0</title>
+<g id="a_NN26_0"><a xlink:title="0.53GB">
+<polygon fill="#f8f8f8" stroke="black" points="1586.62,-577.38 1536.62,-577.38 1532.62,-573.38 1532.62,-541.38 1582.62,-541.38 1586.62,-545.38 1586.62,-577.38"></polygon>
+<polyline fill="none" stroke="black" points="1582.62,-573.38 1532.62,-573.38"></polyline>
+<polyline fill="none" stroke="black" points="1582.62,-573.38 1582.62,-541.38"></polyline>
+<polyline fill="none" stroke="black" points="1582.62,-573.38 1586.62,-577.38"></polyline>
+<text text-anchor="middle" x="1559.62" y="-556.65" font-family="Times,serif" font-size="8.00">80B</text>
+</a>
+</g>
+</g>
+<!-- N26&#45;&gt;NN26_0 -->
+<g id="edge25" class="edge">
+<title>N26-&gt;NN26_0</title>
+<g id="a_edge25"><a xlink:title="0.53GB">
+<path fill="none" stroke="black" d="M1559.62,-651.89C1559.62,-632.44 1559.62,-607.98 1559.62,-589.24"></path>
+<polygon fill="black" stroke="black" points="1563.13,-589.37 1559.63,-579.37 1556.13,-589.37 1563.13,-589.37"></polygon>
+</a>
+</g>
+<g id="a_edge25-label"><a xlink:title="0.53GB">
+<text text-anchor="middle" x="1582.88" y="-608.95" font-family="Times,serif" font-size="14.00"> 0.53GB</text>
+</a>
+</g>
+</g>
+<!-- N27 -->
+<g id="node27" class="node">
+<title>N27</title>
+<g id="a_node27"><a xlink:title="github.com/ethereum/go-ethereum/trie.(*shortNode).copy (0.44GB)">
+<polygon fill="#edebe8" stroke="#b2a590" points="1856.88,-171.5 1734.38,-171.5 1734.38,-88.5 1856.88,-88.5 1856.88,-171.5"></polygon>
+<text text-anchor="middle" x="1795.62" y="-152.3" font-family="Times,serif" font-size="16.00">trie</text>
+<text text-anchor="middle" x="1795.62" y="-133.55" font-family="Times,serif" font-size="16.00">(*shortNode)</text>
+<text text-anchor="middle" x="1795.62" y="-114.8" font-family="Times,serif" font-size="16.00">copy</text>
+<text text-anchor="middle" x="1795.62" y="-96.05" font-family="Times,serif" font-size="16.00">0.44GB (3.84%)</text>
+</a>
+</g>
+</g>
+<!-- NN27_0 -->
+<g id="NN27_0" class="node">
+<title>NN27_0</title>
+<g id="a_NN27_0"><a xlink:title="0.44GB">
+<polygon fill="#f8f8f8" stroke="black" points="1822.62,-36 1772.62,-36 1768.62,-32 1768.62,0 1818.62,0 1822.62,-4 1822.62,-36"></polygon>
+<polyline fill="none" stroke="black" points="1818.62,-32 1768.62,-32"></polyline>
+<polyline fill="none" stroke="black" points="1818.62,-32 1818.62,0"></polyline>
+<polyline fill="none" stroke="black" points="1818.62,-32 1822.62,-36"></polyline>
+<text text-anchor="middle" x="1795.62" y="-15.28" font-family="Times,serif" font-size="8.00">80B</text>
+</a>
+</g>
+</g>
+<!-- N27&#45;&gt;NN27_0 -->
+<g id="edge26" class="edge">
+<title>N27-&gt;NN27_0</title>
+<g id="a_edge26"><a xlink:title="0.44GB">
+<path fill="none" stroke="black" d="M1795.62,-88.04C1795.62,-74.66 1795.62,-60.1 1795.62,-47.81"></path>
+<polygon fill="black" stroke="black" points="1799.13,-47.92 1795.63,-37.92 1792.13,-47.92 1799.13,-47.92"></polygon>
+</a>
+</g>
+<g id="a_edge26-label"><a xlink:title="0.44GB">
+<text text-anchor="middle" x="1818.88" y="-57.2" font-family="Times,serif" font-size="14.00"> 0.44GB</text>
+</a>
+</g>
+</g>
+<!-- NN28_0 -->
+<g id="NN28_0" class="node">
+<title>NN28_0</title>
+<g id="a_NN28_0"><a xlink:title="0.30GB">
+<polygon fill="#f8f8f8" stroke="black" points="1375.62,-295.5 1325.62,-295.5 1321.62,-291.5 1321.62,-259.5 1371.62,-259.5 1375.62,-263.5 1375.62,-295.5"></polygon>
+<polyline fill="none" stroke="black" points="1371.62,-291.5 1321.62,-291.5"></polyline>
+<polyline fill="none" stroke="black" points="1371.62,-291.5 1371.62,-259.5"></polyline>
+<polyline fill="none" stroke="black" points="1371.62,-291.5 1375.62,-295.5"></polyline>
+<text text-anchor="middle" x="1348.62" y="-274.77" font-family="Times,serif" font-size="8.00">76.50MB</text>
+</a>
+</g>
+</g>
+<!-- N28&#45;&gt;NN28_0 -->
+<g id="edge27" class="edge">
+<title>N28-&gt;NN28_0</title>
+<g id="a_edge27"><a xlink:title="0.30GB">
+<path fill="none" stroke="black" d="M1323.52,-372.63C1329.21,-351.29 1336.03,-325.73 1341.12,-306.63"></path>
+<polygon fill="black" stroke="black" points="1344.46,-307.7 1343.66,-297.13 1337.7,-305.89 1344.46,-307.7"></polygon>
+</a>
+</g>
+<g id="a_edge27-label"><a xlink:title="0.30GB">
+<text text-anchor="middle" x="1357.88" y="-335.7" font-family="Times,serif" font-size="14.00"> 0.30GB</text>
+</a>
+</g>
+</g>
+<!-- NN28_1 -->
+<g id="NN28_1" class="node">
+<title>NN28_1</title>
+<g id="a_NN28_1"><a xlink:title="0.06GB">
+<polygon fill="#f8f8f8" stroke="black" points="1303.62,-295.5 1253.62,-295.5 1249.62,-291.5 1249.62,-259.5 1299.62,-259.5 1303.62,-263.5 1303.62,-295.5"></polygon>
+<polyline fill="none" stroke="black" points="1299.62,-291.5 1249.62,-291.5"></polyline>
+<polyline fill="none" stroke="black" points="1299.62,-291.5 1299.62,-259.5"></polyline>
+<polyline fill="none" stroke="black" points="1299.62,-291.5 1303.62,-295.5"></polyline>
+<text text-anchor="middle" x="1276.62" y="-274.77" font-family="Times,serif" font-size="8.00">16B</text>
+</a>
+</g>
+</g>
+<!-- N28&#45;&gt;NN28_1 -->
+<g id="edge28" class="edge">
+<title>N28-&gt;NN28_1</title>
+<g id="a_edge28"><a xlink:title="0.06GB">
+<path fill="none" stroke="black" d="M1288.82,-372.52C1285.33,-364.92 1282.21,-356.88 1280.12,-349 1276.56,-335.48 1275.47,-320.01 1275.37,-307.02"></path>
+<polygon fill="black" stroke="black" points="1278.86,-307.46 1275.49,-297.41 1271.86,-307.37 1278.86,-307.46"></polygon>
+</a>
+</g>
+<g id="a_edge28-label"><a xlink:title="0.06GB">
+<text text-anchor="middle" x="1303.88" y="-335.7" font-family="Times,serif" font-size="14.00"> 0.06GB</text>
+</a>
+</g>
+</g>
+<!-- N29 -->
+<g id="node29" class="node">
+<title>N29</title>
+<g id="a_node29"><a xlink:title="github.com/ethereum/go-ethereum/core/rawdb.(*snappyBuffer).compress (0.31GB)">
+<polygon fill="#edece9" stroke="#b2aa9a" points="372.5,-1706.75 256.75,-1706.75 256.75,-1629.75 372.5,-1629.75 372.5,-1706.75"></polygon>
+<text text-anchor="middle" x="314.62" y="-1688.5" font-family="Times,serif" font-size="15.00">rawdb</text>
+<text text-anchor="middle" x="314.62" y="-1671.25" font-family="Times,serif" font-size="15.00">(*snappyBuffer)</text>
+<text text-anchor="middle" x="314.62" y="-1654" font-family="Times,serif" font-size="15.00">compress</text>
+<text text-anchor="middle" x="314.62" y="-1636.75" font-family="Times,serif" font-size="15.00">0.31GB (2.69%)</text>
+</a>
+</g>
+</g>
+<!-- NN29_0 -->
+<g id="NN29_0" class="node">
+<title>NN29_0</title>
+<g id="a_NN29_0"><a xlink:title="0.24GB">
+<polygon fill="#f8f8f8" stroke="black" points="298.62,-1516.25 248.62,-1516.25 244.62,-1512.25 244.62,-1480.25 294.62,-1480.25 298.62,-1484.25 298.62,-1516.25"></polygon>
+<polyline fill="none" stroke="black" points="294.62,-1512.25 244.62,-1512.25"></polyline>
+<polyline fill="none" stroke="black" points="294.62,-1512.25 294.62,-1480.25"></polyline>
+<polyline fill="none" stroke="black" points="294.62,-1512.25 298.62,-1516.25"></polyline>
+<text text-anchor="middle" x="271.62" y="-1495.53" font-family="Times,serif" font-size="8.00">240.80MB</text>
+</a>
+</g>
+</g>
+<!-- N29&#45;&gt;NN29_0 -->
+<g id="edge29" class="edge">
+<title>N29-&gt;NN29_0</title>
+<g id="a_edge29"><a xlink:title="0.24GB">
+<path fill="none" stroke="black" d="M287.33,-1629.4C282.8,-1621.43 278.74,-1612.83 276.12,-1604.25 268.49,-1579.18 268,-1549.2 269.05,-1527.7"></path>
+<polygon fill="black" stroke="black" points="272.53,-1528.13 269.68,-1517.93 265.54,-1527.68 272.53,-1528.13"></polygon>
+</a>
+</g>
+<g id="a_edge29-label"><a xlink:title="0.24GB">
+<text text-anchor="middle" x="299.88" y="-1590.95" font-family="Times,serif" font-size="14.00"> 0.24GB</text>
+</a>
+</g>
+</g>
+<!-- NN29_1 -->
+<g id="NN29_1" class="node">
+<title>NN29_1</title>
+<g id="a_NN29_1"><a xlink:title="0.07GB">
+<polygon fill="#f8f8f8" stroke="black" points="370.62,-1516.25 320.62,-1516.25 316.62,-1512.25 316.62,-1480.25 366.62,-1480.25 370.62,-1484.25 370.62,-1516.25"></polygon>
+<polyline fill="none" stroke="black" points="366.62,-1512.25 316.62,-1512.25"></polyline>
+<polyline fill="none" stroke="black" points="366.62,-1512.25 366.62,-1480.25"></polyline>
+<polyline fill="none" stroke="black" points="366.62,-1512.25 370.62,-1516.25"></polyline>
+<text text-anchor="middle" x="343.62" y="-1495.53" font-family="Times,serif" font-size="8.00">71.65MB</text>
+</a>
+</g>
+</g>
+<!-- N29&#45;&gt;NN29_1 -->
+<g id="edge30" class="edge">
+<title>N29-&gt;NN29_1</title>
+<g id="a_edge30"><a xlink:title="0.07GB">
+<path fill="none" stroke="black" d="M321.13,-1629.55C326.48,-1598.57 333.94,-1555.36 338.77,-1527.35"></path>
+<polygon fill="black" stroke="black" points="342.16,-1528.3 340.41,-1517.85 335.26,-1527.11 342.16,-1528.3"></polygon>
+</a>
+</g>
+<g id="a_edge30-label"><a xlink:title="0.07GB">
+<text text-anchor="middle" x="351.88" y="-1590.95" font-family="Times,serif" font-size="14.00"> 0.07GB</text>
+</a>
+</g>
+</g>
+<!-- N30&#45;&gt;N29 -->
+<g id="edge73" class="edge">
+<title>N30-&gt;N29</title>
+<g id="a_edge73"><a xlink:title="github.com/ethereum/go-ethereum/core/rawdb.(*freezerTableBatch).AppendRaw -&gt; github.com/ethereum/go-ethereum/core/rawdb.(*snappyBuffer).compress (0.31GB)">
+<path fill="none" stroke="#b2aa9a" d="M388.49,-1808.38C375.92,-1784.72 355.93,-1747.06 339.91,-1716.89"></path>
+<polygon fill="#b2aa9a" stroke="#b2aa9a" points="343.14,-1715.5 335.36,-1708.31 336.96,-1718.79 343.14,-1715.5"></polygon>
+</a>
+</g>
+<g id="a_edge73-label"><a xlink:title="github.com/ethereum/go-ethereum/core/rawdb.(*freezerTableBatch).AppendRaw -&gt; github.com/ethereum/go-ethereum/core/rawdb.(*snappyBuffer).compress (0.31GB)">
+<text text-anchor="middle" x="388.88" y="-1743.7" font-family="Times,serif" font-size="14.00"> 0.31GB</text>
+</a>
+</g>
+</g>
+<!-- N33 -->
+<g id="node33" class="node">
+<title>N33</title>
+<g id="a_node33"><a xlink:title="github.com/ethereum/go-ethereum/core/rawdb.(*freezerTableBatch).appendItem (0.22GB)">
+<polygon fill="#edecea" stroke="#b2ada0" points="238.38,-1705.25 106.88,-1705.25 106.88,-1631.25 238.38,-1631.25 238.38,-1705.25"></polygon>
+<text text-anchor="middle" x="172.62" y="-1687.95" font-family="Times,serif" font-size="14.00">rawdb</text>
+<text text-anchor="middle" x="172.62" y="-1671.45" font-family="Times,serif" font-size="14.00">(*freezerTableBatch)</text>
+<text text-anchor="middle" x="172.62" y="-1654.95" font-family="Times,serif" font-size="14.00">appendItem</text>
+<text text-anchor="middle" x="172.62" y="-1638.45" font-family="Times,serif" font-size="14.00">0.22GB (1.96%)</text>
+</a>
+</g>
+</g>
+<!-- N30&#45;&gt;N33 -->
+<g id="edge75" class="edge">
+<title>N30-&gt;N33</title>
+<g id="a_edge75"><a xlink:title="github.com/ethereum/go-ethereum/core/rawdb.(*freezerTableBatch).AppendRaw -&gt; github.com/ethereum/go-ethereum/core/rawdb.(*freezerTableBatch).appendItem (0.22GB)">
+<path fill="none" stroke="#b2ada0" d="M364.43,-1808.28C345.14,-1795.84 321.12,-1780.03 300.12,-1765.25 276.23,-1748.43 250.38,-1729.18 228.24,-1712.35"></path>
+<polygon fill="#b2ada0" stroke="#b2ada0" points="230.6,-1709.74 220.52,-1706.46 226.35,-1715.31 230.6,-1709.74"></polygon>
+</a>
+</g>
+<g id="a_edge75-label"><a xlink:title="github.com/ethereum/go-ethereum/core/rawdb.(*freezerTableBatch).AppendRaw -&gt; github.com/ethereum/go-ethereum/core/rawdb.(*freezerTableBatch).appendItem (0.22GB)">
+<text text-anchor="middle" x="323.88" y="-1743.7" font-family="Times,serif" font-size="14.00"> 0.22GB</text>
+</a>
+</g>
+</g>
+<!-- N31&#45;&gt;N19 -->
+<g id="edge65" class="edge">
+<title>N31-&gt;N19</title>
+<g id="a_edge65"><a xlink:title="github.com/ethereum/go-ethereum/core/state.(*StateDB).createObject -&gt; github.com/ethereum/go-ethereum/core/state.newObject (0.69GB)">
+<path fill="none" stroke="#b29b7c" d="M589.62,-1808.38C589.62,-1787.07 589.62,-1754.42 589.62,-1726.1"></path>
+<polygon fill="#b29b7c" stroke="#b29b7c" points="593.13,-1726.19 589.63,-1716.19 586.13,-1726.19 593.13,-1726.19"></polygon>
+</a>
+</g>
+<g id="a_edge65-label"><a xlink:title="github.com/ethereum/go-ethereum/core/state.(*StateDB).createObject -&gt; github.com/ethereum/go-ethereum/core/state.newObject (0.69GB)">
+<text text-anchor="middle" x="612.88" y="-1743.7" font-family="Times,serif" font-size="14.00"> 0.69GB</text>
+</a>
+</g>
+</g>
+<!-- N38 -->
+<g id="node38" class="node">
+<title>N38</title>
+<g id="a_node38"><a xlink:title="github.com/ethereum/go-ethereum/core/state.(*StateDB).setStateObject (0.12GB)">
+<polygon fill="#edeceb" stroke="#b2afa8" points="494.5,-1702.25 390.75,-1702.25 390.75,-1634.25 494.5,-1634.25 494.5,-1702.25"></polygon>
+<text text-anchor="middle" x="442.62" y="-1685.9" font-family="Times,serif" font-size="13.00">state</text>
+<text text-anchor="middle" x="442.62" y="-1670.9" font-family="Times,serif" font-size="13.00">(*StateDB)</text>
+<text text-anchor="middle" x="442.62" y="-1655.9" font-family="Times,serif" font-size="13.00">setStateObject</text>
+<text text-anchor="middle" x="442.62" y="-1640.9" font-family="Times,serif" font-size="13.00">0.12GB (1.10%)</text>
+</a>
+</g>
+</g>
+<!-- N31&#45;&gt;N38 -->
+<g id="edge79" class="edge">
+<title>N31-&gt;N38</title>
+<g id="a_edge79"><a xlink:title="github.com/ethereum/go-ethereum/core/state.(*StateDB).createObject -&gt; github.com/ethereum/go-ethereum/core/state.(*StateDB).setStateObject (0.12GB)">
+<path fill="none" stroke="#b2afa8" d="M568.88,-1808.38C546.02,-1783.19 508.77,-1742.14 480.64,-1711.15"></path>
+<polygon fill="#b2afa8" stroke="#b2afa8" points="483.3,-1708.87 473.99,-1703.81 478.11,-1713.57 483.3,-1708.87"></polygon>
+</a>
+</g>
+<g id="a_edge79-label"><a xlink:title="github.com/ethereum/go-ethereum/core/state.(*StateDB).createObject -&gt; github.com/ethereum/go-ethereum/core/state.(*StateDB).setStateObject (0.12GB)">
+<text text-anchor="middle" x="552.88" y="-1751.95" font-family="Times,serif" font-size="14.00"> 0.12GB</text>
+<text text-anchor="middle" x="552.88" y="-1735.45" font-family="Times,serif" font-size="14.00"> (inline)</text>
+</a>
+</g>
+</g>
+<!-- NN32_0 -->
+<g id="NN32_0" class="node">
+<title>NN32_0</title>
+<g id="a_NN32_0"><a xlink:title="0.24GB">
+<polygon fill="#f8f8f8" stroke="black" points="1704.62,-148 1654.62,-148 1650.62,-144 1650.62,-112 1700.62,-112 1704.62,-116 1704.62,-148"></polygon>
+<polyline fill="none" stroke="black" points="1700.62,-144 1650.62,-144"></polyline>
+<polyline fill="none" stroke="black" points="1700.62,-144 1700.62,-112"></polyline>
+<polyline fill="none" stroke="black" points="1700.62,-144 1704.62,-148"></polyline>
+<text text-anchor="middle" x="1677.62" y="-127.28" font-family="Times,serif" font-size="8.00">32B</text>
+</a>
+</g>
+</g>
+<!-- N32&#45;&gt;NN32_0 -->
+<g id="edge31" class="edge">
+<title>N32-&gt;NN32_0</title>
+<g id="a_edge31"><a xlink:title="0.24GB">
+<path fill="none" stroke="black" d="M1677.62,-240.16C1677.62,-215.33 1677.62,-182.88 1677.62,-159.83"></path>
+<polygon fill="black" stroke="black" points="1681.13,-159.92 1677.63,-149.92 1674.13,-159.92 1681.13,-159.92"></polygon>
+</a>
+</g>
+<g id="a_edge31-label"><a xlink:title="0.24GB">
+<text text-anchor="middle" x="1700.88" y="-200.95" font-family="Times,serif" font-size="14.00"> 0.24GB</text>
+</a>
+</g>
+</g>
+<!-- NN33_0 -->
+<g id="NN33_0" class="node">
+<title>NN33_0</title>
+<g id="a_NN33_0"><a xlink:title="0.18GB">
+<polygon fill="#f8f8f8" stroke="black" points="199.62,-1516.25 149.62,-1516.25 145.62,-1512.25 145.62,-1480.25 195.62,-1480.25 199.62,-1484.25 199.62,-1516.25"></polygon>
+<polyline fill="none" stroke="black" points="195.62,-1512.25 145.62,-1512.25"></polyline>
+<polyline fill="none" stroke="black" points="195.62,-1512.25 195.62,-1480.25"></polyline>
+<polyline fill="none" stroke="black" points="195.62,-1512.25 199.62,-1516.25"></polyline>
+<text text-anchor="middle" x="172.62" y="-1495.53" font-family="Times,serif" font-size="8.00">186.91MB</text>
+</a>
+</g>
+</g>
+<!-- N33&#45;&gt;NN33_0 -->
+<g id="edge32" class="edge">
+<title>N33-&gt;NN33_0</title>
+<g id="a_edge32"><a xlink:title="0.18GB">
+<path fill="none" stroke="black" d="M172.62,-1630.8C172.62,-1599.89 172.62,-1556.18 172.62,-1527.78"></path>
+<polygon fill="black" stroke="black" points="176.13,-1528.14 172.63,-1518.14 169.13,-1528.14 176.13,-1528.14"></polygon>
+</a>
+</g>
+<g id="a_edge32-label"><a xlink:title="0.18GB">
+<text text-anchor="middle" x="195.88" y="-1590.95" font-family="Times,serif" font-size="14.00"> 0.18GB</text>
+</a>
+</g>
+</g>
+<!-- N34&#45;&gt;N20 -->
+<g id="edge58" class="edge">
+<title>N34-&gt;N20</title>
+<g id="a_edge58"><a xlink:title="encoding/json.Unmarshal -&gt; encoding/json.(*decodeState).unmarshal (0.99GB)">
+<path fill="none" stroke="#b28d64" d="M1606.97,-1248.87C1689.67,-1263.48 1864.62,-1300.83 1864.62,-1355.25 1864.62,-1833.25 1864.62,-1833.25 1864.62,-1833.25 1864.62,-1905.71 1770.83,-1936.19 1708.02,-1948.48"></path>
+<polygon fill="#b28d64" stroke="#b28d64" points="1707.75,-1944.97 1698.56,-1950.23 1709.02,-1951.86 1707.75,-1944.97"></polygon>
+</a>
+</g>
+<g id="a_edge58-label"><a xlink:title="encoding/json.Unmarshal -&gt; encoding/json.(*decodeState).unmarshal (0.99GB)">
+<text text-anchor="middle" x="1887.88" y="-1590.95" font-family="Times,serif" font-size="14.00"> 0.99GB</text>
+</a>
+</g>
+</g>
+<!-- NN35_0 -->
+<g id="NN35_0" class="node">
+<title>NN35_0</title>
+<g id="a_NN35_0"><a xlink:title="0.18GB">
+<polygon fill="#f8f8f8" stroke="black" points="879.62,-1374.25 829.62,-1374.25 825.62,-1370.25 825.62,-1338.25 875.62,-1338.25 879.62,-1342.25 879.62,-1374.25"></polygon>
+<polyline fill="none" stroke="black" points="875.62,-1370.25 825.62,-1370.25"></polyline>
+<polyline fill="none" stroke="black" points="875.62,-1370.25 875.62,-1338.25"></polyline>
+<polyline fill="none" stroke="black" points="875.62,-1370.25 879.62,-1374.25"></polyline>
+<text text-anchor="middle" x="852.62" y="-1353.53" font-family="Times,serif" font-size="8.00">93.50MB</text>
+</a>
+</g>
+</g>
+<!-- N35&#45;&gt;NN35_0 -->
+<g id="edge33" class="edge">
+<title>N35-&gt;NN35_0</title>
+<g id="a_edge33"><a xlink:title="0.18GB">
+<path fill="none" stroke="black" d="M852.62,-1464.07C852.62,-1440.22 852.62,-1408.39 852.62,-1385.7"></path>
+<polygon fill="black" stroke="black" points="856.13,-1385.96 852.63,-1375.96 849.13,-1385.96 856.13,-1385.96"></polygon>
+</a>
+</g>
+<g id="a_edge33-label"><a xlink:title="0.18GB">
+<text text-anchor="middle" x="875.88" y="-1395.45" font-family="Times,serif" font-size="14.00"> 0.18GB</text>
+</a>
+</g>
+</g>
+<!-- N36 -->
+<g id="node36" class="node">
+<title>N36</title>
+<g id="a_node36"><a xlink:title="github.com/ethereum/go-ethereum/rlp.(*encBuffer).makeBytes (0.17GB)">
+<polygon fill="#edeceb" stroke="#b2aea5" points="714.5,-931.75 610.75,-931.75 610.75,-863.75 714.5,-863.75 714.5,-931.75"></polygon>
+<text text-anchor="middle" x="662.62" y="-915.4" font-family="Times,serif" font-size="13.00">rlp</text>
+<text text-anchor="middle" x="662.62" y="-900.4" font-family="Times,serif" font-size="13.00">(*encBuffer)</text>
+<text text-anchor="middle" x="662.62" y="-885.4" font-family="Times,serif" font-size="13.00">makeBytes</text>
+<text text-anchor="middle" x="662.62" y="-870.4" font-family="Times,serif" font-size="13.00">0.17GB (1.50%)</text>
+</a>
+</g>
+</g>
+<!-- NN36_0 -->
+<g id="NN36_0" class="node">
+<title>NN36_0</title>
+<g id="a_NN36_0"><a xlink:title="0.10GB">
+<polygon fill="#f8f8f8" stroke="black" points="689.62,-803.75 639.62,-803.75 635.62,-799.75 635.62,-767.75 685.62,-767.75 689.62,-771.75 689.62,-803.75"></polygon>
+<polyline fill="none" stroke="black" points="685.62,-799.75 635.62,-799.75"></polyline>
+<polyline fill="none" stroke="black" points="685.62,-799.75 685.62,-767.75"></polyline>
+<polyline fill="none" stroke="black" points="685.62,-799.75 689.62,-803.75"></polyline>
+<text text-anchor="middle" x="662.62" y="-783.02" font-family="Times,serif" font-size="8.00">80B</text>
+</a>
+</g>
+</g>
+<!-- N36&#45;&gt;NN36_0 -->
+<g id="edge34" class="edge">
+<title>N36-&gt;NN36_0</title>
+<g id="a_edge34"><a xlink:title="0.10GB">
+<path fill="none" stroke="black" d="M662.62,-863.45C662.62,-848.13 662.62,-830.15 662.62,-815.44"></path>
+<polygon fill="black" stroke="black" points="666.13,-815.5 662.63,-805.5 659.13,-815.5 666.13,-815.5"></polygon>
+</a>
+</g>
+<g id="a_edge34-label"><a xlink:title="0.10GB">
+<text text-anchor="middle" x="685.88" y="-824.95" font-family="Times,serif" font-size="14.00"> 0.10GB</text>
+</a>
+</g>
+</g>
+<!-- N37&#45;&gt;N36 -->
+<g id="edge77" class="edge">
+<title>N37-&gt;N36</title>
+<g id="a_edge77"><a xlink:title="github.com/ethereum/go-ethereum/rlp.EncodeToBytes -&gt; github.com/ethereum/go-ethereum/rlp.(*encBuffer).makeBytes (0.17GB)">
+<path fill="none" stroke="#b2aea5" d="M662.62,-1012.67C662.62,-994.89 662.62,-967.05 662.62,-943.34"></path>
+<polygon fill="#b2aea5" stroke="#b2aea5" points="666.13,-943.61 662.63,-933.61 659.13,-943.61 666.13,-943.61"></polygon>
+</a>
+</g>
+<g id="a_edge77-label"><a xlink:title="github.com/ethereum/go-ethereum/rlp.EncodeToBytes -&gt; github.com/ethereum/go-ethereum/rlp.(*encBuffer).makeBytes (0.17GB)">
+<text text-anchor="middle" x="685.88" y="-976.95" font-family="Times,serif" font-size="14.00"> 0.17GB</text>
+<text text-anchor="middle" x="685.88" y="-960.45" font-family="Times,serif" font-size="14.00"> (inline)</text>
+</a>
+</g>
+</g>
+<!-- NN38_0 -->
+<g id="NN38_0" class="node">
+<title>NN38_0</title>
+<g id="a_NN38_0"><a xlink:title="0.12GB">
+<polygon fill="#f8f8f8" stroke="black" points="469.62,-1516.25 419.62,-1516.25 415.62,-1512.25 415.62,-1480.25 465.62,-1480.25 469.62,-1484.25 469.62,-1516.25"></polygon>
+<polyline fill="none" stroke="black" points="465.62,-1512.25 415.62,-1512.25"></polyline>
+<polyline fill="none" stroke="black" points="465.62,-1512.25 465.62,-1480.25"></polyline>
+<polyline fill="none" stroke="black" points="465.62,-1512.25 469.62,-1516.25"></polyline>
+<text text-anchor="middle" x="442.62" y="-1495.53" font-family="Times,serif" font-size="8.00">127.50MB</text>
+</a>
+</g>
+</g>
+<!-- N38&#45;&gt;NN38_0 -->
+<g id="edge35" class="edge">
+<title>N38-&gt;NN38_0</title>
+<g id="a_edge35"><a xlink:title="0.12GB">
+<path fill="none" stroke="black" d="M442.62,-1634.06C442.62,-1602.96 442.62,-1556.98 442.62,-1527.57"></path>
+<polygon fill="black" stroke="black" points="446.13,-1527.96 442.63,-1517.96 439.13,-1527.96 446.13,-1527.96"></polygon>
+</a>
+</g>
+<g id="a_edge35-label"><a xlink:title="0.12GB">
+<text text-anchor="middle" x="465.88" y="-1590.95" font-family="Times,serif" font-size="14.00"> 0.12GB</text>
+</a>
+</g>
+</g>
+<!-- N39&#45;&gt;N8 -->
+<g id="edge86" class="edge">
+<title>N39-&gt;N8</title>
+<g id="a_edge86"><a xlink:title="github.com/ethereum/go-ethereum/trie.(*hasher).hashShortNodeChildren -&gt; github.com/ethereum/go-ethereum/trie.(*hasher).hash (0.03GB)">
+<path fill="none" stroke="#b2b2af" d="M1800.39,-301.47C1802.24,-315.8 1802.51,-334.25 1795.62,-349 1789.34,-362.47 1778.69,-374.13 1767.3,-383.68"></path>
+<polygon fill="#b2b2af" stroke="#b2b2af" points="1765.4,-380.72 1759.69,-389.63 1769.72,-386.23 1765.4,-380.72"></polygon>
+</a>
+</g>
+<g id="a_edge86-label"><a xlink:title="github.com/ethereum/go-ethereum/trie.(*hasher).hashShortNodeChildren -&gt; github.com/ethereum/go-ethereum/trie.(*hasher).hash (0.03GB)">
+<text text-anchor="middle" x="1822.88" y="-335.7" font-family="Times,serif" font-size="14.00"> 0.03GB</text>
+</a>
+</g>
+</g>
+<!-- N39&#45;&gt;N27 -->
+<g id="edge71" class="edge">
+<title>N39-&gt;N27</title>
+<g id="a_edge71"><a xlink:title="github.com/ethereum/go-ethereum/trie.(*hasher).hashShortNodeChildren -&gt; github.com/ethereum/go-ethereum/trie.(*shortNode).copy (0.44GB)">
+<path fill="none" stroke="#b2a590" d="M1795.62,-253.77C1795.62,-234.86 1795.62,-207.22 1795.62,-182.95"></path>
+<polygon fill="#b2a590" stroke="#b2a590" points="1799.13,-183.24 1795.63,-173.24 1792.13,-183.24 1799.13,-183.24"></polygon>
+</a>
+</g>
+<g id="a_edge71-label"><a xlink:title="github.com/ethereum/go-ethereum/trie.(*hasher).hashShortNodeChildren -&gt; github.com/ethereum/go-ethereum/trie.(*shortNode).copy (0.44GB)">
+<text text-anchor="middle" x="1818.88" y="-209.2" font-family="Times,serif" font-size="14.00"> 0.44GB</text>
+<text text-anchor="middle" x="1818.88" y="-192.7" font-family="Times,serif" font-size="14.00"> (inline)</text>
+</a>
+</g>
+</g>
+<!-- NN40_0 -->
+<g id="NN40_0" class="node">
+<title>NN40_0</title>
+<g id="a_NN40_0"><a xlink:title="0.06GB">
+<polygon fill="#f8f8f8" stroke="black" points="941.62,-1686.25 891.62,-1686.25 887.62,-1682.25 887.62,-1650.25 937.62,-1650.25 941.62,-1654.25 941.62,-1686.25"></polygon>
+<polyline fill="none" stroke="black" points="937.62,-1682.25 887.62,-1682.25"></polyline>
+<polyline fill="none" stroke="black" points="937.62,-1682.25 937.62,-1650.25"></polyline>
+<polyline fill="none" stroke="black" points="937.62,-1682.25 941.62,-1686.25"></polyline>
+<text text-anchor="middle" x="914.62" y="-1665.53" font-family="Times,serif" font-size="8.00">32B</text>
+</a>
+</g>
+</g>
+<!-- N40&#45;&gt;NN40_0 -->
+<g id="edge36" class="edge">
+<title>N40-&gt;NN40_0</title>
+<g id="a_edge36"><a xlink:title="0.06GB">
+<path fill="none" stroke="black" d="M914.62,-1800.78C914.62,-1771.27 914.62,-1726.85 914.62,-1697.95"></path>
+<polygon fill="black" stroke="black" points="918.13,-1698.12 914.63,-1688.12 911.13,-1698.12 918.13,-1698.12"></polygon>
+</a>
+</g>
+<g id="a_edge36-label"><a xlink:title="0.06GB">
+<text text-anchor="middle" x="937.88" y="-1743.7" font-family="Times,serif" font-size="14.00"> 0.06GB</text>
+</a>
+</g>
+</g>
+<!-- N41 -->
+<g id="node41" class="node">
+<title>N41</title>
+<g id="a_node41"><a xlink:title="reflect.New (0.06GB)">
+<polygon fill="#ededec" stroke="#b2b1ad" points="1837,-1522.5 1748.25,-1522.5 1748.25,-1474 1837,-1474 1837,-1522.5"></polygon>
+<text text-anchor="middle" x="1792.62" y="-1508.05" font-family="Times,serif" font-size="11.00">reflect</text>
+<text text-anchor="middle" x="1792.62" y="-1494.55" font-family="Times,serif" font-size="11.00">New</text>
+<text text-anchor="middle" x="1792.62" y="-1481.05" font-family="Times,serif" font-size="11.00">0.06GB (0.52%)</text>
+</a>
+</g>
+</g>
+<!-- NN41_0 -->
+<g id="NN41_0" class="node">
+<title>NN41_0</title>
+<g id="a_NN41_0"><a xlink:title="0.06GB">
+<polygon fill="#f8f8f8" stroke="black" points="1819.62,-1374.25 1769.62,-1374.25 1765.62,-1370.25 1765.62,-1338.25 1815.62,-1338.25 1819.62,-1342.25 1819.62,-1374.25"></polygon>
+<polyline fill="none" stroke="black" points="1815.62,-1370.25 1765.62,-1370.25"></polyline>
+<polyline fill="none" stroke="black" points="1815.62,-1370.25 1815.62,-1338.25"></polyline>
+<polyline fill="none" stroke="black" points="1815.62,-1370.25 1819.62,-1374.25"></polyline>
+<text text-anchor="middle" x="1792.62" y="-1353.53" font-family="Times,serif" font-size="8.00">32B</text>
+</a>
+</g>
+</g>
+<!-- N41&#45;&gt;NN41_0 -->
+<g id="edge37" class="edge">
+<title>N41-&gt;NN41_0</title>
+<g id="a_edge37"><a xlink:title="0.06GB">
+<path fill="none" stroke="black" d="M1792.62,-1473.5C1792.62,-1449.26 1792.62,-1411.61 1792.62,-1385.77"></path>
+<polygon fill="black" stroke="black" points="1796.13,-1385.99 1792.63,-1375.99 1789.13,-1385.99 1796.13,-1385.99"></polygon>
+</a>
+</g>
+<g id="a_edge37-label"><a xlink:title="0.06GB">
+<text text-anchor="middle" x="1815.88" y="-1395.45" font-family="Times,serif" font-size="14.00"> 0.06GB</text>
+</a>
+</g>
+</g>
+<!-- N42&#45;&gt;N20 -->
+<g id="edge46" class="edge">
+<title>N42-&gt;N20</title>
+<g id="a_edge46"><a xlink:title="encoding/json.(*Decoder).Decode -&gt; encoding/json.(*decodeState).unmarshal (1.38GB)">
+<path fill="none" stroke="#b27846" d="M1533.2,-2032.89C1555.03,-2019.25 1582.95,-2001.8 1606.31,-1987.2"></path>
+<polygon fill="#b27846" stroke="#b27846" points="1608.1,-1990.21 1614.73,-1981.94 1604.39,-1984.27 1608.1,-1990.21"></polygon>
+</a>
+</g>
+<g id="a_edge46-label"><a xlink:title="encoding/json.(*Decoder).Decode -&gt; encoding/json.(*decodeState).unmarshal (1.38GB)">
+<text text-anchor="middle" x="1607.88" y="-2001.95" font-family="Times,serif" font-size="14.00"> 1.38GB</text>
+</a>
+</g>
+</g>
+<!-- N43&#45;&gt;N41 -->
+<g id="edge83" class="edge">
+<title>N43-&gt;N41</title>
+<g id="a_edge83"><a xlink:title="encoding/json.(*decodeState).literalStore ... reflect.New (0.06GB)">
+<path fill="none" stroke="#b2b1ad" stroke-dasharray="1,5" d="M1792.62,-1644.59C1792.62,-1616.28 1792.62,-1567.51 1792.62,-1534.34"></path>
+<polygon fill="#b2b1ad" stroke="#b2b1ad" points="1796.13,-1534.41 1792.63,-1524.41 1789.13,-1534.41 1796.13,-1534.41"></polygon>
+</a>
+</g>
+<g id="a_edge83-label"><a xlink:title="encoding/json.(*decodeState).literalStore ... reflect.New (0.06GB)">
+<text text-anchor="middle" x="1815.88" y="-1590.95" font-family="Times,serif" font-size="14.00"> 0.06GB</text>
+</a>
+</g>
+</g>
+</g>
+</svg>
+
+  </div>
+  <script>
+
+
+function initPanAndZoom(svg, clickHandler) {
+  'use strict';
+
+  
+  const IDLE = 0;
+  const MOUSEPAN = 1;
+  const TOUCHPAN = 2;
+  const TOUCHZOOM = 3;
+  let mode = IDLE;
+
+  
+  let currentScale = 1.0;
+  const initWidth = svg.viewBox.baseVal.width;
+  const initHeight = svg.viewBox.baseVal.height;
+
+  
+  let panLastX = 0;      
+  let panLastY = 0;      
+  let moved = false;     
+  let touchid = null;    
+
+  
+  let touchid2 = null;     
+  let initGap = 1.0;       
+  let initScale = 1.0;     
+  let centerPoint = null;  
+
+  
+  function toSvg(x, y) {
+    const p = svg.createSVGPoint();
+    p.x = x;
+    p.y = y;
+    let m = svg.getCTM();
+    if (m == null) m = svg.getScreenCTM(); 
+    return p.matrixTransform(m.inverse());
+  }
+
+  
+  
+  function rescale(s, u) {
+    
+    if (s < 0.2) s = 0.2;
+    if (s > 10.0) s = 10.0;
+
+    currentScale = s;
+
+    
+    
+    
+    const vb = svg.viewBox;
+    const w1 = vb.baseVal.width;
+    const w2 = initWidth / s;
+    const h1 = vb.baseVal.height;
+    const h2 = initHeight / s;
+    vb.baseVal.width = w2;
+    vb.baseVal.height = h2;
+
+    
+    
+    
+    
+    
+    
+    
+    vb.baseVal.x = u.x - (u.x - vb.baseVal.x) * (w2 / w1);
+    vb.baseVal.y = u.y - (u.y - vb.baseVal.y) * (h2 / h1);
+  }
+
+  function handleWheel(e) {
+    if (e.deltaY == 0) return;
+    
+    rescale(currentScale * (e.deltaY < 0 ? 1.1 : (1/1.1)),
+            toSvg(e.offsetX, e.offsetY));
+  }
+
+  function setMode(m) {
+    mode = m;
+    touchid = null;
+    touchid2 = null;
+  }
+
+  function panStart(x, y) {
+    moved = false;
+    panLastX = x;
+    panLastY = y;
+  }
+
+  function panMove(x, y) {
+    let dx = x - panLastX;
+    let dy = y - panLastY;
+    if (Math.abs(dx) <= 2 && Math.abs(dy) <= 2) return; 
+
+    moved = true;
+    panLastX = x;
+    panLastY = y;
+
+    
+    const swidth = svg.clientWidth || svg.parentNode.clientWidth;
+    const sheight = svg.clientHeight || svg.parentNode.clientHeight;
+
+    
+    dx *= (svg.viewBox.baseVal.width / swidth);
+    dy *= (svg.viewBox.baseVal.height / sheight);
+
+    svg.viewBox.baseVal.x -= dx;
+    svg.viewBox.baseVal.y -= dy;
+  }
+
+  function handleScanStart(e) {
+    if (e.button != 0) return; 
+    setMode(MOUSEPAN);
+    panStart(e.clientX, e.clientY);
+    e.preventDefault();
+    svg.addEventListener('mousemove', handleScanMove);
+  }
+
+  function handleScanMove(e) {
+    if (e.buttons == 0) {
+      
+      setMode(IDLE);
+      svg.removeEventListener('mousemove', handleScanMove);
+      return;
+    }
+    if (mode == MOUSEPAN) panMove(e.clientX, e.clientY);
+  }
+
+  function handleScanEnd(e) {
+    if (mode == MOUSEPAN) panMove(e.clientX, e.clientY);
+    setMode(IDLE);
+    svg.removeEventListener('mousemove', handleScanMove);
+    if (!moved) clickHandler(e.target);
+  }
+
+  
+  function findTouch(tlist, id) {
+    for (const t of tlist) {
+      if (t.identifier == id) return t;
+    }
+    return null;
+  }
+
+  
+  function touchGap(t1, t2) {
+    const dx = t1.clientX - t2.clientX;
+    const dy = t1.clientY - t2.clientY;
+    return Math.hypot(dx, dy);
+  }
+
+  function handleTouchStart(e) {
+    if (mode == IDLE && e.changedTouches.length == 1) {
+      
+      const t = e.changedTouches[0];
+      setMode(TOUCHPAN);
+      touchid = t.identifier;
+      panStart(t.clientX, t.clientY);
+      e.preventDefault();
+    } else if (mode == TOUCHPAN && e.touches.length == 2) {
+      
+      setMode(TOUCHZOOM);
+      const t1 = e.touches[0];
+      const t2 = e.touches[1];
+      touchid = t1.identifier;
+      touchid2 = t2.identifier;
+      initScale = currentScale;
+      initGap = touchGap(t1, t2);
+      centerPoint = toSvg((t1.clientX + t2.clientX) / 2,
+                          (t1.clientY + t2.clientY) / 2);
+      e.preventDefault();
+    }
+  }
+
+  function handleTouchMove(e) {
+    if (mode == TOUCHPAN) {
+      const t = findTouch(e.changedTouches, touchid);
+      if (t == null) return;
+      if (e.touches.length != 1) {
+        setMode(IDLE);
+        return;
+      }
+      panMove(t.clientX, t.clientY);
+      e.preventDefault();
+    } else if (mode == TOUCHZOOM) {
+      
+      const t1 = findTouch(e.touches, touchid);
+      const t2 = findTouch(e.touches, touchid2);
+      if (t1 == null || t2 == null) return;
+      const gap = touchGap(t1, t2);
+      rescale(initScale * gap / initGap, centerPoint);
+      e.preventDefault();
+    }
+  }
+
+  function handleTouchEnd(e) {
+    if (mode == TOUCHPAN) {
+      const t = findTouch(e.changedTouches, touchid);
+      if (t == null) return;
+      panMove(t.clientX, t.clientY);
+      setMode(IDLE);
+      e.preventDefault();
+      if (!moved) clickHandler(t.target);
+    } else if (mode == TOUCHZOOM) {
+      setMode(IDLE);
+      e.preventDefault();
+    }
+  }
+
+  svg.addEventListener('mousedown', handleScanStart);
+  svg.addEventListener('mouseup', handleScanEnd);
+  svg.addEventListener('touchstart', handleTouchStart);
+  svg.addEventListener('touchmove', handleTouchMove);
+  svg.addEventListener('touchend', handleTouchEnd);
+  svg.addEventListener('wheel', handleWheel, true);
+}
+
+function initMenus() {
+  'use strict';
+
+  let activeMenu = null;
+  let activeMenuHdr = null;
+
+  function cancelActiveMenu() {
+    if (activeMenu == null) return;
+    activeMenu.style.display = 'none';
+    activeMenu = null;
+    activeMenuHdr = null;
+  }
+
+  
+  for (const menu of document.getElementsByClassName('submenu')) {
+    const hdr = menu.parentElement;
+    if (hdr == null) return;
+    if (hdr.classList.contains('disabled')) return;
+    function showMenu(e) {
+      
+      
+      if (e.target.parentElement != hdr) return;
+      activeMenu = menu;
+      activeMenuHdr = hdr;
+      menu.style.display = 'block';
+    }
+    hdr.addEventListener('mousedown', showMenu);
+    hdr.addEventListener('touchstart', showMenu);
+  }
+
+  
+  for (const t of ['mousedown', 'touchstart']) {
+    document.addEventListener(t, (e) => {
+      
+      
+      if (activeMenuHdr != e.target.closest('.menu-item')) {
+        cancelActiveMenu();
+      }
+    }, { passive: true, capture: true });
+  }
+
+  
+  document.addEventListener('mouseup', (e) => {
+    if (activeMenu == e.target.closest('.submenu')) {
+      cancelActiveMenu();
+    }
+  }, { passive: true, capture: true });
+}
+
+function sendURL(method, url, done) {
+  fetch(url.toString(), {method: method})
+      .then((response) => { done(response.ok); })
+      .catch((error) => { done(false); });
+}
+
+
+function initConfigManager() {
+  'use strict';
+
+  
+  function elem(id) {
+    const result = document.getElementById(id);
+    if (!result) console.warn('element ' + id + ' not found');
+    return result;
+  }
+  const overlay = elem('dialog-overlay');
+  const saveDialog = elem('save-dialog');
+  const saveInput = elem('save-name');
+  const saveError = elem('save-error');
+  const delDialog = elem('delete-dialog');
+  const delPrompt = elem('delete-prompt');
+  const delError = elem('delete-error');
+
+  let currentDialog = null;
+  let currentDeleteTarget = null;
+
+  function showDialog(dialog) {
+    if (currentDialog != null) {
+      overlay.style.display = 'none';
+      currentDialog.style.display = 'none';
+    }
+    currentDialog = dialog;
+    if (dialog != null) {
+      overlay.style.display = 'block';
+      dialog.style.display = 'block';
+    }
+  }
+
+  function cancelDialog(e) {
+    showDialog(null);
+  }
+
+  
+  function showSaveDialog(e) {
+    saveError.innerText = '';
+    showDialog(saveDialog);
+    saveInput.focus();
+  }
+
+  
+  function commitSave(e) {
+    const name = saveInput.value;
+    const url = new URL(document.URL);
+    
+    url.pathname = new URL('./saveconfig', document.URL).pathname;
+    url.searchParams.set('config', name);
+    saveError.innerText = '';
+    sendURL('POST', url, (ok) => {
+      if (!ok) {
+        saveError.innerText = 'Save failed';
+      } else {
+        showDialog(null);
+        location.reload();  
+      }
+    });
+  }
+
+  function handleSaveInputKey(e) {
+    if (e.key === 'Enter') commitSave(e);
+  }
+
+  function deleteConfig(e, elem) {
+    e.preventDefault();
+    const config = elem.dataset.config;
+    delPrompt.innerText = 'Delete ' + config + '?';
+    currentDeleteTarget = elem;
+    showDialog(delDialog);
+  }
+
+  function commitDelete(e, elem) {
+    if (!currentDeleteTarget) return;
+    const config = currentDeleteTarget.dataset.config;
+    const url = new URL('./deleteconfig', document.URL);
+    url.searchParams.set('config', config);
+    delError.innerText = '';
+    sendURL('DELETE', url, (ok) => {
+      if (!ok) {
+        delError.innerText = 'Delete failed';
+        return;
+      }
+      showDialog(null);
+      
+      if (currentDeleteTarget && currentDeleteTarget.parentElement) {
+        currentDeleteTarget.parentElement.remove();
+      }
+    });
+  }
+
+  
+  function bind(event, elem, fn) {
+    if (elem == null) return;
+    elem.addEventListener(event, fn);
+    if (event == 'click') {
+      
+      elem.addEventListener('touchstart', fn);
+    }
+  }
+
+  bind('click', elem('save-config'), showSaveDialog);
+  bind('click', elem('save-cancel'), cancelDialog);
+  bind('click', elem('save-confirm'), commitSave);
+  bind('keydown', saveInput, handleSaveInputKey);
+
+  bind('click', elem('delete-cancel'), cancelDialog);
+  bind('click', elem('delete-confirm'), commitDelete);
+
+  
+  for (const del of Array.from(document.getElementsByClassName('menu-delete-btn'))) {
+    bind('click', del, (e) => {
+      deleteConfig(e, del);
+    });
+  }
+}
+
+
+
+
+
+
+function viewer(baseUrl, nodes, options) {
+  'use strict';
+
+  
+  const search = document.getElementById('search');
+  const graph0 = document.getElementById('graph0');
+  const svg = (graph0 == null ? null : graph0.parentElement);
+  const toptable = document.getElementById('toptable');
+
+  let regexpActive = false;
+  let selected = new Map();
+  let origFill = new Map();
+  let searchAlarm = null;
+  let buttonsEnabled = true;
+
+  
+  function getSelection() {
+    if (selected.size > 0) {
+      return selected;
+    } else if (options && options.current) {
+      return options.current();
+    }
+    return new Map();
+  }
+
+  function handleDetails(e) {
+    e.preventDefault();
+    const detailsText = document.getElementById('detailsbox');
+    if (detailsText != null) {
+      if (detailsText.style.display === 'block') {
+        detailsText.style.display = 'none';
+      } else {
+        detailsText.style.display = 'block';
+      }
+    }
+  }
+
+  function handleKey(e) {
+    if (e.keyCode != 13) return;
+    setHrefParams(window.location, function (params) {
+      params.set('f', search.value);
+    });
+    e.preventDefault();
+  }
+
+  function handleSearch() {
+    
+    if (searchAlarm != null) {
+      clearTimeout(searchAlarm);
+    }
+    searchAlarm = setTimeout(selectMatching, 300);
+
+    regexpActive = true;
+    updateButtons();
+  }
+
+  function selectMatching() {
+    searchAlarm = null;
+    let re = null;
+    if (search.value != '') {
+      try {
+        re = new RegExp(search.value);
+      } catch (e) {
+        
+        return;
+      }
+    }
+
+    function match(text) {
+      return re != null && re.test(text);
+    }
+
+    
+    selected.forEach(function(v, n) {
+      if (!match(nodes[n])) {
+        unselect(n);
+      }
+    })
+
+    
+    if (nodes) {
+      for (let n = 0; n < nodes.length; n++) {
+        if (!selected.has(n) && match(nodes[n])) {
+          select(n);
+        }
+      }
+    }
+
+    updateButtons();
+  }
+
+  function toggleSvgSelect(elem) {
+    
+    while (elem != null && elem.parentElement != graph0) {
+      elem = elem.parentElement;
+    }
+    if (!elem) return;
+
+    
+    regexpActive = false;
+
+    const n = nodeId(elem);
+    if (n < 0) return;
+    if (selected.has(n)) {
+      unselect(n);
+    } else {
+      select(n);
+    }
+    updateButtons();
+  }
+
+  function unselect(n) {
+    if (setNodeHighlight(n, false)) selected.delete(n);
+  }
+
+  function select(n, elem) {
+    if (setNodeHighlight(n, true)) selected.set(n, true);
+  }
+
+  function nodeId(elem) {
+    const id = elem.id;
+    if (!id) return -1;
+    if (!id.startsWith('node')) return -1;
+    const n = parseInt(id.slice(4), 10);
+    if (isNaN(n)) return -1;
+    if (n < 0 || n >= nodes.length) return -1;
+    return n;
+  }
+
+  
+  function setNodeHighlight(n, set) {
+    if (options && options.hiliter) return options.hiliter(n, set);
+
+    const elem = document.getElementById('node' + n);
+    if (!elem) return false;
+
+    
+    if (elem.nodeName == 'TR') {
+      elem.classList.toggle('hilite', set);
+      return true;
+    }
+
+    
+    const p = findPolygon(elem);
+    if (p != null) {
+      if (set) {
+        origFill.set(p, p.style.fill);
+        p.style.fill = '#ccccff';
+      } else if (origFill.has(p)) {
+        p.style.fill = origFill.get(p);
+      }
+    }
+
+    return true;
+  }
+
+  function findPolygon(elem) {
+    if (elem.localName == 'polygon') return elem;
+    for (const c of elem.children) {
+      const p = findPolygon(c);
+      if (p != null) return p;
+    }
+    return null;
+  }
+
+  
+  function quotemeta(str) {
+    return str.replace(/([\\\.?+*\[\](){}|^$])/g, '\\$1');
+  }
+
+  function setSampleIndexLink(id) {
+    const elem = document.getElementById(id);
+    if (elem != null) {
+      setHrefParams(elem, function (params) {
+        params.set("si", id);
+      });
+    }
+  }
+
+  
+  
+  function makeSearchLinkDynamic(id) {
+    const elem = document.getElementById(id);
+    if (elem == null) return;
+
+    
+    
+    let param = 'f';
+    if (id == 'ignore') param = 'i';
+    if (id == 'hide') param = 'h';
+    if (id == 'show') param = 's';
+    if (id == 'show-from') param = 'sf';
+
+    
+    elem.addEventListener('mouseenter', updater);
+    elem.addEventListener('touchstart', updater);
+
+    function updater() {
+      
+      
+      let re = regexpActive
+          ? search.value
+          : Array.from(getSelection().keys()).map(key => quotemeta(nodes[key])).join('|');
+
+      setHrefParams(elem, function (params) {
+        if (re != '') {
+          
+          if (param != 'f' && param != 's' && param != 'sf' && params.has(param)) {
+            const old = params.get(param);
+            if (old != '') {
+              re += '|' + old;
+            }
+          }
+          params.set(param, re);
+        } else {
+          params.delete(param);
+        }
+      });
+    }
+  }
+
+  function setHrefParams(elem, paramSetter) {
+    let url = new URL(elem.href);
+    url.hash = '';
+
+    
+    const params = url.searchParams;
+    for (const p of new URLSearchParams(window.location.search)) {
+      params.set(p[0], p[1]);
+    }
+
+    
+    paramSetter(params);
+
+    elem.href = url.toString();
+  }
+
+  function handleTopClick(e) {
+    
+    let elem = e.target;
+    while (elem != null && elem.nodeName != 'TR') {
+      elem = elem.parentElement;
+    }
+    if (elem == null || elem.children.length < 6) return;
+
+    e.preventDefault();
+    const tr = elem;
+    const td = elem.children[5];
+    if (td.nodeName != 'TD') return;
+    const name = td.innerText;
+    const index = nodes.indexOf(name);
+    if (index < 0) return;
+
+    
+    regexpActive = false;
+
+    if (selected.has(index)) {
+      unselect(index, elem);
+    } else {
+      select(index, elem);
+    }
+    updateButtons();
+  }
+
+  function updateButtons() {
+    const enable = (search.value != '' || getSelection().size != 0);
+    if (buttonsEnabled == enable) return;
+    buttonsEnabled = enable;
+    for (const id of ['focus', 'ignore', 'hide', 'show', 'show-from']) {
+      const link = document.getElementById(id);
+      if (link != null) {
+        link.classList.toggle('disabled', !enable);
+      }
+    }
+  }
+
+  
+  updateButtons();
+
+  
+  initMenus();
+  if (svg != null) {
+    initPanAndZoom(svg, toggleSvgSelect);
+  }
+  if (toptable != null) {
+    toptable.addEventListener('mousedown', handleTopClick);
+    toptable.addEventListener('touchstart', handleTopClick);
+  }
+
+  const ids = ['topbtn', 'graphbtn', 'flamegraph', 'flamegraph2', 'peek', 'list',
+	       'disasm', 'focus', 'ignore', 'hide', 'show', 'show-from'];
+  ids.forEach(makeSearchLinkDynamic);
+
+  const sampleIDs = ['alloc_objects', 'alloc_space', 'inuse_objects', 'inuse_space', ];
+  sampleIDs.forEach(setSampleIndexLink);
+
+  
+  function addAction(id, action) {
+    const btn = document.getElementById(id);
+    if (btn != null) {
+      btn.addEventListener('click', action);
+      btn.addEventListener('touchstart', action);
+    }
+  }
+
+  addAction('details', handleDetails);
+  initConfigManager();
+
+  search.addEventListener('input', handleSearch);
+  search.addEventListener('keydown', handleKey);
+
+  
+  const main = document.getElementById('bodycontainer');
+  if (main) {
+    main.focus();
+  }
+}
+</script>
+
+  <script>viewer(new URL(window.location.href), ["","runtime.main","github.com/ethereum/go-ethereum/core.hashAlloc","github.com/ethereum/go-ethereum/core/state.(*stateObject).updateTrie","github.com/ethereum/go-ethereum/core.(*Genesis).Commit","main.initGenesis","github.com/ethereum/go-ethereum/core/state.(*StateDB).IntermediateRoot","github.com/ethereum/go-ethereum/trie.(*StateTrie).UpdateStorage","github.com/ethereum/go-ethereum/trie.(*hasher).hash","github.com/ethereum/go-ethereum/trie.(*Trie).update","github.com/ethereum/go-ethereum/trie.(*fullNode).copy","encoding/json.(*decodeState).object","github.com/cockroachdb/pebble.(*Batch).init","github.com/ethereum/go-ethereum/core/state.(*stateObject).GetCommittedState","encoding/json.(*decodeState).value","github.com/ethereum/go-ethereum/core.(*Genesis).UnmarshalJSON","github.com/ethereum/go-ethereum/trie.(*Trie).insert","github.com/ethereum/go-ethereum/trie.(*Trie).Update","github.com/ethereum/go-ethereum/core.flushAlloc","github.com/ethereum/go-ethereum/core/state.newObject","encoding/json.(*decodeState).unmarshal","github.com/ethereum/go-ethereum/core/types.(*Account).UnmarshalJSON","github.com/ethereum/go-ethereum/trie.(*hasher).hashFullNodeChildren.func1","github.com/ethereum/go-ethereum/trie.(*StateTrie).UpdateAccount","github.com/ethereum/go-ethereum/trie.(*hasher).hashFullNodeChildren","github.com/ethereum/go-ethereum/core/state.(*StateDB).updateStateObject","github.com/ethereum/go-ethereum/trie.keybytesToHex","github.com/ethereum/go-ethereum/trie.(*shortNode).copy","github.com/ethereum/go-ethereum/trie.(*tracer).onInsert","github.com/ethereum/go-ethereum/core/rawdb.(*snappyBuffer).compress","github.com/ethereum/go-ethereum/core/rawdb.(*freezerTableBatch).AppendRaw","github.com/ethereum/go-ethereum/core/state.(*StateDB).createObject","github.com/ethereum/go-ethereum/trie.(*hasher).hashData","github.com/ethereum/go-ethereum/core/rawdb.(*freezerTableBatch).appendItem","encoding/json.Unmarshal","github.com/ethereum/go-ethereum/core/state.(*StateDB).Finalise","github.com/ethereum/go-ethereum/rlp.(*encBuffer).makeBytes","github.com/ethereum/go-ethereum/rlp.EncodeToBytes","github.com/ethereum/go-ethereum/core/state.(*StateDB).setStateObject","github.com/ethereum/go-ethereum/trie.(*hasher).hashShortNodeChildren","github.com/ethereum/go-ethereum/core/state.(*stateObject).SetCode","reflect.New","encoding/json.(*Decoder).Decode","encoding/json.(*decodeState).literalStore"]);</script>
+
+
+</body></html>
